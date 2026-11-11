@@ -16,6 +16,8 @@ project:
   responsible_maintainers:
   - Hossein Vahidi
   license: Apache-2.0
+  version: 0.1.0
+  repository: https://github.com/HnVahidi/lean-sparse-mm
 classification:
   arxiv:
   - cs.DC
@@ -109,7 +111,9 @@ review:
   notes: See docs/correspondence-review.md and docs/coverage.md. No human peer review, Palomar submission,
     acceptance, registration or Zenodo deposit is asserted. Code licensing and the three-author attribution
     have been selected by the maintainer. paper/ retains its separate rights notice; no arXiv licence
-    has yet been recorded. Hosted GitHub Actions has not run during local preparation.
+    has yet been recorded. Local verification evidence identifies its tested snapshot. Public GitHub
+    Actions results must be checked for the exact commit; GitHub hosting does not constitute Palomar
+    registration.
 alignment:
   namespace: SparseMM
   statements:

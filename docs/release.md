@@ -6,16 +6,16 @@
 - `paper/` is excluded and retains the authors' copyright under its separate rights notice. No arXiv licence or CC licence has been applied here.
 - The formalization author list is Chetan Gupta, Jukka Suomela and Hossein Vahidi, in manuscript order. Hossein Vahidi is the maintainer; AI assistance is disclosed separately.
 
-## Steps before publication
+## Version 0.1.0 publication and archival steps
 
 - Record the actual arXiv identifier and submission licence once chosen and issued. Keep the manuscript exclusion explicit in any public release. See [licensing and authorship](../LICENSE_STATUS.md).
 - Approve the coverage description, including the scalar-message theorem, shared codec premise, finite classical public choices, and the explicit rounding/output-balancing variants. A fully composed bit-vector implementation is not claimed. If the release is to advertise complete formal verification of that representation, finish the encoded-program and bit-budget bridge first; otherwise keep the scalar/encoding qualification in the public claim.
-- Choose the public repository owner, release version and tag. The requested repository name is `lean-sparse-mm`; no public repository or release is created by this local preparation.
-- Review the final snapshot and its mechanical evidence. Run the Actions workflow on the exact public commit after publishing; a prepared workflow is not a successful hosted CI run.
+- The repository is `HnVahidi/lean-sparse-mm` and the source/citation version is `0.1.0`. The intended first release tag is `v0.1.0`; the tag and GitHub release are created only after the Zenodo integration is enabled.
+- Review the exact source snapshot, retained local evidence, and successful GitHub Actions run for the public commit before creating the release.
 
 ## Later GitHub-Zenodo steps
 
-1. After authorization, publish this focused repository and ensure its verification workflow passes on the intended release commit. Include the current paper and citation metadata in that commit.
+1. Verify that the public repository and its `main` commit have passed the verification workflow. The release commit must include the paper and the title, three authors and version in `CITATION.cff`.
 2. Link the owner's GitHub account to Zenodo and enable this repository in the GitHub integration. Check the configured permissions and repository selection using [Zenodo's enablement guide](https://help.zenodo.org/docs/github/enable-repository/).
 3. Follow the current [release archival guide](https://help.zenodo.org/docs/github/archive-software/github-upload/) to archive the approved GitHub release. Check the resulting Zenodo record, creators, licences, tag, commit and included files before citing it. Do not treat a draft or failed integration as a published archive.
 4. Record the actual version DOI, concept DOI and landing page after Zenodo assigns them. Keep the verified release tag immutable. Update future metadata or repository documentation without silently changing an already cited source snapshot.
@@ -23,7 +23,7 @@
 
 Suggested citation form, to fill only after approval and archival:
 
-> Chetan Gupta, Jukka Suomela, and Hossein Vahidi. *lean-sparse-mm: Lean companion for sparse matrix multiplication*. Release TAG, source commit COMMIT. Zenodo. ACTUAL VERSION DOI.
+> Chetan Gupta, Jukka Suomela, and Hossein Vahidi. *lean-sparse-mm: Lean companion for sparse matrix multiplication*. Version 0.1.0, source commit COMMIT. Zenodo. ACTUAL VERSION DOI.
 
 The capitalized fields above are instructions, not assigned identifiers. Copy the final citation from the actual Zenodo landing page and verify its metadata. Cite the manuscript separately when discussing the mathematical result.
 

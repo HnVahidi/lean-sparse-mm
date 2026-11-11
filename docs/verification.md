@@ -63,5 +63,6 @@ removed after the run.
 The [original evidence directory](evidence/) contains the retained standalone result.
 The [licensing-update evidence](evidence/licensing-update/README.md) records the
 subsequent code-licence and three-author metadata verification.
-The Actions workflow is prepared for a future hosted checkout. The current
-verification takes place locally in Linux under WSL.
+The [GitHub Actions workflow](https://github.com/HnVahidi/lean-sparse-mm/actions/workflows/verification.yml)
+uses the same entry point on each public push. Confirm the run for the exact
+commit being cited; the retained local evidence records its own tested snapshot.

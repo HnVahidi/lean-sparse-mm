@@ -24,9 +24,8 @@ artifact upload to the template's immutable action revisions, and builds
 Bubblewrap 0.12.0 from commit `2a76602a8c71f36c1527cf9fc3417d9149822e0c`.
 [Template workflow](https://github.com/PalomarRegistry/PalomarTemplate/blob/2891de4c48955af824969a263d31b25e7a9a1406/.github/workflows/ci.yml) · [Policy section 5](https://github.com/PalomarRegistry/PalomarPolicy/blob/28bd48b9b71bbb2a82c718ce761d5a4220ef8e60/CONTRIBUTING.md#5-what-mechanical-verification-establishes)
 
-The current deliverable is a local companion. Registry submission would need a
-public repository, authorization for that submission, and a recognized root
-licence matching the metadata. The root code licence is Apache-2.0; paper/ is
+The companion is prepared for public GitHub hosting. A later registry submission
+requires explicit authorization and a recognized root licence matching the metadata. The root code licence is Apache-2.0; paper/ is
 explicitly excluded and retains its separate rights notice. The approved scope
-is recorded in `LICENSE_STATUS.md`. A public repository and explicit submission
-authorization remain follow-up steps; licensing alone is not registration. [Policy sections 2.5 and 4](https://github.com/PalomarRegistry/PalomarPolicy/blob/28bd48b9b71bbb2a82c718ce761d5a4220ef8e60/CONTRIBUTING.md#25-repository-licence)
+is recorded in `LICENSE_STATUS.md`. Explicit submission authorization remains a follow-up step; public hosting and
+licensing alone are not registration. [Policy sections 2.5 and 4](https://github.com/PalomarRegistry/PalomarPolicy/blob/28bd48b9b71bbb2a82c718ce761d5a4220ef8e60/CONTRIBUTING.md#25-repository-licence)
