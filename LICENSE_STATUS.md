@@ -21,6 +21,5 @@ terms in [NOTICE.md](NOTICE.md) and [the retained licence](docs/licenses/Apache-
 External Lean/Mathlib dependencies keep their own licences. Citation metadata
 is separate from the scope of the permissions granted by each licence.
 
-The version `1.0.0` source is prepared for public GitHub publication. GitHub
-releases, Palomar registration and Zenodo archival remain follow-up actions
-listed in [the release checklist](docs/release.md).
+Version `1.0.0` was released and archived on 11 November 2026 with this
+licence scope. [Zenodo version archive](https://doi.org/10.5281/zenodo.24127515) · [Release record](docs/release.md)

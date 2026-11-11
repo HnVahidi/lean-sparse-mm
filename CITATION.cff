@@ -1,10 +1,9 @@
 cff-version: 1.2.0
 type: software
 title: 'lean-sparse-mm: Lean companion for sparse matrix multiplication'
-message: If you use this formalization, cite version 1.0.0 and its exact source commit, and cite the
-  manuscript when relying on its mathematical results. Use the specific Zenodo version DOI once the
-  release has been archived. Code is Apache-2.0; paper/ is excluded and governed by paper/LICENSE.
-  No Zenodo DOI or GitHub release is asserted yet.
+message: Cite the Zenodo version DOI for this formalization and cite the manuscript when relying on
+  its mathematical results. Apache-2.0 covers the code and project documentation outside paper/.
+  The manuscript files in paper/ retain the separate rights stated in paper/LICENSE.
 authors:
 - family-names: Gupta
   given-names: Chetan
@@ -40,5 +39,8 @@ references:
     selected arXiv licence or DOI is asserted.
 license: Apache-2.0
 version: 1.0.0
+date-released: '2026-11-11'
+commit: 76a5a6a73fdc9f3f1fe02d1d2e4664d4f802467d
+doi: 10.5281/zenodo.24127515
 repository-code: https://github.com/HnVahidi/lean-sparse-mm
 url: https://github.com/HnVahidi/lean-sparse-mm

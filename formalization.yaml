@@ -17,6 +17,7 @@ project:
   - Hossein Vahidi
   license: Apache-2.0
   version: 1.0.0
+  doi: 10.5281/zenodo.24127515
   repository: https://github.com/HnVahidi/lean-sparse-mm
 classification:
   arxiv:
@@ -108,12 +109,12 @@ review:
   reviewers:
   - Codex paper and mathematical-construction reviewer (AI)
   - Codex finite load and operational-interface reviewers (AI)
-  notes: See docs/correspondence-review.md and docs/coverage.md. No human peer review, Palomar submission,
-    acceptance, registration or Zenodo deposit is asserted. Code licensing and the three-author attribution
-    have been selected by the maintainer. paper/ retains its separate rights notice; no arXiv licence
-    has yet been recorded. Local verification evidence identifies its tested snapshot. Public GitHub
-    Actions results must be checked for the exact commit; GitHub hosting does not constitute Palomar
-    registration.
+  notes: See docs/correspondence-review.md and docs/coverage.md for the independent AI correspondence
+    review. The release commit 76a5a6a73fdc9f3f1fe02d1d2e4664d4f802467d passed GitHub Actions run
+    42969947794 and was archived in Zenodo on 11 November 2026 as version 1.0.0. docs/release.md
+    records the DOI, source commit and archive verification. Code licensing and the three-author
+    attribution were selected by the maintainer. The files in paper/ retain the separate manuscript
+    rights notice.
 alignment:
   namespace: SparseMM
   statements:

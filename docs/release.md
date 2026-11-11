@@ -1,30 +1,49 @@
-# Release and archival checklist
+# Release and archive
 
 ## Confirmed licensing and credit
 
 - Apache-2.0 applies to the code, scripts and project documentation outside `paper/`, subject to retained third-party notices.
-- `paper/` is excluded and retains the authors' copyright under its separate rights notice. No arXiv licence or CC licence has been applied here.
-- The formalization author list is Chetan Gupta, Jukka Suomela and Hossein Vahidi, in manuscript order. Hossein Vahidi is the maintainer; AI assistance is disclosed separately.
+- The manuscript files in `paper/` retain the authors' copyright and are governed by the separate rights notice. [Manuscript rights](../paper/LICENSE)
+- The formalization authors are Chetan Gupta, Jukka Suomela and Hossein Vahidi, in manuscript order. Hossein Vahidi maintains the repository. [Formalization and AI disclosure](../formalization.yaml)
 
-## Version 1.0.0 publication and archival steps
+## Version 1.0.0
 
-- Record the actual arXiv identifier and submission licence once chosen and issued. Keep the manuscript exclusion explicit in any public release. See [licensing and authorship](../LICENSE_STATUS.md).
-- Approve the coverage description, including the scalar-message theorem, shared codec premise, finite classical public choices, and the explicit rounding/output-balancing variants. A fully composed bit-vector implementation is not claimed. If the release is to advertise complete formal verification of that representation, finish the encoded-program and bit-budget bridge first; otherwise keep the scalar/encoding qualification in the public claim.
-- The repository is `HnVahidi/lean-sparse-mm` and the source/citation version is `1.0.0`. The intended first release tag is `v1.0.0`; the tag and GitHub release are created only after the Zenodo integration is enabled.
-- Review the exact source snapshot, retained local evidence, and successful GitHub Actions run for the public commit before creating the release.
+GitHub released the verified source and Zenodo archived it on 11 November 2026.
 
-## Later GitHub-Zenodo steps
+| Record | Value |
+| --- | --- |
+| GitHub release | [`v1.0.0`](https://github.com/HnVahidi/lean-sparse-mm/releases/tag/v1.0.0) |
+| Source commit | [`76a5a6a73fdc9f3f1fe02d1d2e4664d4f802467d`](https://github.com/HnVahidi/lean-sparse-mm/commit/76a5a6a73fdc9f3f1fe02d1d2e4664d4f802467d) |
+| Verification | [Successful GitHub Actions run 42969947794](https://github.com/HnVahidi/lean-sparse-mm/actions/runs/42969947794) |
+| Zenodo version DOI | [`10.5281/zenodo.24127515`](https://doi.org/10.5281/zenodo.24127515) |
+| Zenodo concept DOI | [`10.5281/zenodo.24127514`](https://doi.org/10.5281/zenodo.24127514) |
+| Archive ZIP | `HnVahidi/lean-sparse-mm-v1.0.0.zip`, 814,910 bytes |
+| ZIP SHA-256 | `bdd86815626022127b495f6d45a73e0d343dc7adda57ead38ecfefed4fe2ecf8` |
+| ZIP MD5 | `6c08becea78e002449765c39df5a72ab` |
 
-1. Verify that the public repository and its `main` commit have passed the verification workflow. The release commit must include the paper and the title, three authors and version in `CITATION.cff`.
-2. Link the owner's GitHub account to Zenodo and enable this repository in the GitHub integration. Check the configured permissions and repository selection using [Zenodo's enablement guide](https://help.zenodo.org/docs/github/enable-repository/).
-3. Follow the current [release archival guide](https://help.zenodo.org/docs/github/archive-software/github-upload/) to archive the approved GitHub release. Check the resulting Zenodo record, creators, licences, tag, commit and included files before citing it. Do not treat a draft or failed integration as a published archive.
-4. Record the actual version DOI, concept DOI and landing page after Zenodo assigns them. Keep the verified release tag immutable. Update future metadata or repository documentation without silently changing an already cited source snapshot.
-5. In arXiv, cite the exact archived version used for verification, with the repository release tag and source commit. [Zenodo recommends a version DOI for reproducibility](https://zenodo.org/help/versioning); a concept DOI refers to the evolving collection of versions.
+All 137 file paths and file contents in the downloaded ZIP matched the Git
+snapshot at the release commit. The `v1.0.0` tag identifies those archived bytes.
+The citation metadata on `main` records the DOI assigned after archival.
+[Zenodo record and archive](https://zenodo.org/records/24127515)
 
-Suggested citation form, to fill only after approval and archival:
+The release proves the scalar-message theorem with the paper's shared codec
+premise for its bit interpretation. The coverage audit records the finite public
+choices and the rounding and output-assignment variants. [Coverage audit](coverage.md)
 
-> Chetan Gupta, Jukka Suomela, and Hossein Vahidi. *lean-sparse-mm: Lean companion for sparse matrix multiplication*. Version 1.0.0, source commit COMMIT. Zenodo. ACTUAL VERSION DOI.
+## Citation
 
-The capitalized fields above are instructions, not assigned identifiers. Copy the final citation from the actual Zenodo landing page and verify its metadata. Cite the manuscript separately when discussing the mathematical result.
+> Chetan Gupta, Jukka Suomela, and Hossein Vahidi. (2026). *lean-sparse-mm: Lean companion for sparse matrix multiplication* (Version 1.0.0) [Software]. Zenodo. [10.5281/zenodo.24127515](https://doi.org/10.5281/zenodo.24127515)
 
-Palomar submission, editorial review and registration are separate optional actions; local Comparator/kernel acceptance is not a registry entry.
+Use the version DOI for the exact snapshot. The concept DOI identifies the
+collection of versions. Cite the manuscript separately for its mathematical
+results. Record its arXiv identifier and licence once issued.
+[Zenodo versioning guide](https://zenodo.org/help/versioning)
+
+## Future versions
+
+1. Keep the existing release tags and archived files fixed. Prepare a new version on `main` and update the package and citation versions.
+2. Remove or replace the previous version's DOI and release date when preparing a different version; do not present the old version DOI as the new archive's identifier.
+3. Check the exact candidate commit with the verification workflow. Confirm that this GitHub repository remains enabled in Zenodo before publishing its new release.
+4. After archival, verify the creators, licence scope, version, file checksums and new version DOI. Record that DOI in the current citation metadata.
+
+Palomar submission and registration remain separate actions; neither the GitHub release nor the Zenodo DOI is a Palomar registration.
