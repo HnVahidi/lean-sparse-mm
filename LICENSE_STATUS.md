@@ -21,6 +21,6 @@ terms in [NOTICE.md](NOTICE.md) and [the retained licence](docs/licenses/Apache-
 External Lean/Mathlib dependencies keep their own licences. Citation metadata
 is separate from the scope of the permissions granted by each licence.
 
-The version `0.1.0` source is prepared for public GitHub publication. GitHub
+The version `1.0.0` source is prepared for public GitHub publication. GitHub
 releases, Palomar registration and Zenodo archival remain follow-up actions
 listed in [the release checklist](docs/release.md).

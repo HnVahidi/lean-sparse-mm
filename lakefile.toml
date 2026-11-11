@@ -1,5 +1,5 @@
 name = "formalized_sparse_mm"
-version = "0.1.0"
+version = "1.0.0"
 defaultTargets = ["SparseMM", "Challenge", "Solution"]
 
 [[require]]

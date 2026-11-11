@@ -2,7 +2,7 @@
 
 Lean companion to **Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model**, by Chetan Gupta, Jukka Suomela, and Hossein Vahidi.
 
-Read the [paper](paper/sparse-mm.pdf), the [coverage audit](docs/coverage.md), and the [verification report](docs/verification.md). This is the version `0.1.0` source for the [public companion repository](https://github.com/HnVahidi/lean-sparse-mm). GitHub release creation and Zenodo archival are subsequent steps in the [release checklist](docs/release.md); no DOI or Palomar entry is asserted.
+Read the [paper](paper/sparse-mm.pdf), the [coverage audit](docs/coverage.md), and the [verification report](docs/verification.md). This is the version `1.0.0` source for the [public companion repository](https://github.com/HnVahidi/lean-sparse-mm). GitHub release creation and Zenodo archival are subsequent steps in the [release checklist](docs/release.md); no DOI or Palomar entry is asserted.
 
 ## Scope
 
@@ -45,7 +45,7 @@ A build alone is not the full verification. Required checks also compare the Cha
 
 The included manuscript sources are from revision `678f50ee1fd6c1f97ab92062f965063be28015af`; the supplied PDF is identified separately by its SHA-256 in [docs/source-provenance.json](docs/source-provenance.json). The mathematical Lean development originates at revision `8badbe471000b4e0f63d2e40b1ee784cb74c4556`, with prior evidence at `3ac917835b35e7b1d4b66f758f1b2a37a7f78826`. No sibling checkout or private source is required to build this package.
 
-`CITATION.cff` records the formalization title, version `0.1.0`, repository URL and all three authors. For archival citation, use the DOI of the exact verified Zenodo release once it exists, as described in [docs/release.md](docs/release.md). The formalization is credited to Chetan Gupta, Jukka Suomela, and Hossein Vahidi in `CITATION.cff` and `formalization.yaml`; Hossein Vahidi is the repository maintainer. AI assistance is recorded in `formalization.yaml`; automated checks and agent review are not human peer review or Palomar registration.
+`CITATION.cff` records the formalization title, version `1.0.0`, repository URL and all three authors. For archival citation, use the DOI of the exact verified Zenodo release once it exists, as described in [docs/release.md](docs/release.md). The formalization is credited to Chetan Gupta, Jukka Suomela, and Hossein Vahidi in `CITATION.cff` and `formalization.yaml`; Hossein Vahidi is the repository maintainer. AI assistance is recorded in `formalization.yaml`; automated checks and agent review are not human peer review or Palomar registration.
 
 ## Licence scope
 
