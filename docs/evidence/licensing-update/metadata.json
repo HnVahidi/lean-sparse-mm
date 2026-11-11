@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "schemas": {
+    "formalization.yaml": {
+      "schema_url": "https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/99c678e569c7c4c0772db297c5ddd5e4c9b6322e/schema/v0.4.schema.json",
+      "schema_sha256": "25ff6b25ca4511635aff4443cf20480c15e59dddf19591c730950b442ea54fce",
+      "file_sha256": "3a3ccc3515b8ebf8a91d9e70a978c33bc22260074e9c1e177812d4592d5d9f12",
+      "passed": true,
+      "errors": []
+    },
+    "CITATION.cff": {
+      "schema_url": "https://raw.githubusercontent.com/citation-file-format/citation-file-format/396f738fb025b1d8acdb02a56ffc923f95dc8999/schema.json",
+      "schema_sha256": "0b8d22140da702d766df318dcff3a91af2f39521298dcf36d76315fd99cc169b",
+      "file_sha256": "b7e2a401da7283433a2fec05e009a6d119eda509c19e429a7ce2ed8ccafd5ccd",
+      "passed": true,
+      "errors": []
+    }
+  },
+  "provenance": {
+    "passed": true,
+    "provenance_sha256": "d822627a783a04856a9129c601d4081f913b92f136d0133a4aa57581bd55030f",
+    "paper_pdf_sha256": "37ff1c413e7b088bf4364e64c8886128e5fbc566e3abebb6a59c5c2a79e42672",
+    "checked_manuscript_files": 7,
+    "checked_proof_files": 33,
+    "attribution_sha256": {
+      "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "paper/LICENSE": "4f2aa89f0eea6207a0a076fe6c220e16e2dd92c48268e6d7e1a22b9c8e890b1d",
+      "NOTICE.md": "7aed49b40ed2ec40d752323a5cfc30824f53cf655f24225911423c475c741878",
+      "LICENSE_STATUS.md": "1d2f509b73323cd674b383c75465f8732844069fb506fb61a7b71c3a9724c210",
+      "docs/licenses/Apache-2.0.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "errors": []
+  },
+  "licensing_and_credit": {
+    "passed": true,
+    "code_license": "Apache-2.0",
+    "excluded_paths": [
+      "paper/**"
+    ],
+    "paper_rights": "All rights reserved",
+    "formalization_authors": [
+      "Chetan Gupta",
+      "Jukka Suomela",
+      "Hossein Vahidi"
+    ],
+    "responsible_maintainers": [
+      "Hossein Vahidi"
+    ],
+    "errors": []
+  },
+  "registry_submission_ready": false
+}
