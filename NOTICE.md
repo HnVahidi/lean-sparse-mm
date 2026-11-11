@@ -13,8 +13,8 @@ hashes below identify the actual files consumed.
 | `SparseMM/Routing.lean` | `RectangularMM/StaticRouting.lean` | `9ddd2eaae441f54a134225cec2c54543c15fc72f7087d502308aba9fed90394b` | Namespace and documentation adapted for sparse-MM; source scheduling proof retained. |
 | `SparseMM/PermutationBalancing.lean` | `RectangularMM/LoadBalancing.lean` | `77a9c5fb0c66ce1aadbfa9149f7670639bbfedd91d30f9811aecfc53f7940dc` | Namespace changed from `RectangularMM` to `SparseMM`; finite balancing proofs retained. |
 
-This attribution and copied licence apply to the reused material. They do not
-declare a licence for the supplied paper, the other new formalization files,
-or the surrounding shared research repository. The overall project's licence
-is currently unspecified by its owner. No whole-repository licensing decision
-is inferred from the request to formalize the paper.
+This original attribution remains applicable to the reused material. The
+formalization code, scripts and documentation outside paper/ are now licensed
+under the root LICENSE (Apache-2.0). All contents of paper/ are excluded and
+retain the separate terms in paper/LICENSE. Neither this notice nor the root
+code licence changes the licences of external dependencies or mathematical sources.

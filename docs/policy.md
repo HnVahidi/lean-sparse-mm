@@ -26,6 +26,7 @@ Bubblewrap 0.12.0 from commit `2a76602a8c71f36c1527cf9fc3417d9149822e0c`.
 
 The current deliverable is a local companion. Registry submission would need a
 public repository, authorization for that submission, and a recognized root
-licence matching the metadata. The licence choice is open and recorded in
-`LICENSE_STATUS.md`. Local schema validation and proof replay are independent of
-that release decision. [Policy sections 2.5 and 4](https://github.com/PalomarRegistry/PalomarPolicy/blob/28bd48b9b71bbb2a82c718ce761d5a4220ef8e60/CONTRIBUTING.md#25-repository-licence)
+licence matching the metadata. The root code licence is Apache-2.0; paper/ is
+explicitly excluded and retains its separate rights notice. The approved scope
+is recorded in `LICENSE_STATUS.md`. A public repository and explicit submission
+authorization remain follow-up steps; licensing alone is not registration. [Policy sections 2.5 and 4](https://github.com/PalomarRegistry/PalomarPolicy/blob/28bd48b9b71bbb2a82c718ce761d5a4220ef8e60/CONTRIBUTING.md#25-repository-licence)

@@ -2,6 +2,7 @@
 """Validate pinned metadata schemas and the recorded paper/proof provenance."""
 
 import json
+import re
 from pathlib import Path
 import sys
 import urllib.request
@@ -78,7 +79,7 @@ def check_provenance(metadata):
     if not any(source.get("id") == f"sha256:{pdf_sha}" for source in metadata["sources"]):
         errors.append("formalization.yaml does not identify the recorded PDF")
     attribution = {}
-    for name in ("NOTICE.md", "LICENSE_STATUS.md", "docs/licenses/Apache-2.0.txt"):
+    for name in ("LICENSE", "paper/LICENSE", "NOTICE.md", "LICENSE_STATUS.md", "docs/licenses/Apache-2.0.txt"):
         file = ROOT / name
         if not file.is_file() or not file.stat().st_size:
             errors.append(f"Missing or empty attribution file {name}")
@@ -87,6 +88,48 @@ def check_provenance(metadata):
     return {"passed": not errors, "provenance_sha256": digest(path), "paper_pdf_sha256": pdf_sha,
             "checked_manuscript_files": len(paper_files), "checked_proof_files": len(proof_files),
             "attribution_sha256": attribution, "errors": errors}
+
+
+def check_licensing_and_credit(metadata, citation):
+    """Check the selected code licence, manuscript exclusion and author alignment."""
+    errors = []
+    expected_apache = "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    for name in ("LICENSE", "docs/licenses/Apache-2.0.txt"):
+        path = ROOT / name
+        if not path.is_file() or digest(path) != expected_apache:
+            errors.append(f"{name} does not match the retained standard Apache-2.0 text")
+    root_licences = [path.name for path in ROOT.iterdir() if path.is_file() and
+                    re.fullmatch(r"(?:LICENSE|LICENCE|COPYING|UNLICENSE|OFL)(?:\.(?:md|markdown|txt))?",
+                                 path.name, flags=re.IGNORECASE)]
+    if root_licences != ["LICENSE"]:
+        errors.append("Expected LICENSE as the sole conventional root licence file")
+    if metadata["project"].get("license") != "Apache-2.0" or citation.get("license") != "Apache-2.0":
+        errors.append("Formalization and citation code licences must both be Apache-2.0")
+    licensing = metadata.get("licensing", {})
+    code, paper = licensing.get("code", {}), licensing.get("paper", {})
+    if (code.get("license"), code.get("license_file"), code.get("excluded_paths")) != (
+            "Apache-2.0", "LICENSE", ["paper/**"]):
+        errors.append("Code licence scope must explicitly exclude paper/**")
+    if (paper.get("path"), paper.get("rights"), paper.get("notice_file")) != (
+            "paper/", "All rights reserved", "paper/LICENSE"):
+        errors.append("The manuscript must retain its separate paper/LICENSE rights notice")
+    notice = ROOT / "paper/LICENSE"
+    if not notice.is_file() or not notice.stat().st_size:
+        errors.append("Missing manuscript rights notice")
+    def names(entries):
+        return [entry.get("name") or " ".join(
+            filter(None, (entry.get("given-names"), entry.get("family-names")))) for entry in entries]
+    authors = metadata["project"]["authors"]
+    if names(citation.get("authors", [])) != authors:
+        errors.append("CITATION.cff and formalization.yaml formalization authors differ")
+    source = metadata["sources"][0]
+    references = [reference for reference in citation.get("references", [])
+                  if reference.get("title") == source["title"]]
+    if len(references) != 1 or names(references[0].get("authors", [])) != source["authors"]:
+        errors.append("The manuscript authors differ between citation and source metadata")
+    return {"passed": not errors, "code_license": "Apache-2.0", "excluded_paths": ["paper/**"],
+            "paper_rights": paper.get("rights"), "formalization_authors": authors,
+            "responsible_maintainers": metadata["project"]["responsible_maintainers"], "errors": errors}
 
 
 def main():
@@ -103,9 +146,13 @@ def main():
     for error in provenance["errors"]:
         print(error)
     print(f"Paper, proof and attribution provenance check {'passed' if provenance['passed'] else 'FAILED'}.")
-    passed = schema_ok and provenance["passed"]
+    licensing = check_licensing_and_credit(documents["formalization.yaml"], documents["CITATION.cff"]) if schema_ok else {"passed": False, "errors": []}
+    for error in licensing["errors"]:
+        print(error)
+    print(f"Code licence, manuscript exclusion and author consistency check {'passed' if licensing['passed'] else 'FAILED'}.")
+    passed = schema_ok and provenance["passed"] and licensing["passed"]
     write_json(directory / "metadata.json", {"passed": passed, "schemas": schemas, "provenance": provenance,
-                                             "registry_submission_ready": False})
+                                             "licensing_and_credit": licensing, "registry_submission_ready": False})
     return int(not passed)
 
 

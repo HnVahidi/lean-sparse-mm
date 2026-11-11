@@ -20,7 +20,7 @@ Integer teams use `h = Nat.sqrt d + 1`, clusters have `d*h` positions, and publi
 - `paper/`: matching PDF, complete active LaTeX sources, bibliography and inline figures.
 - `docs/`: coverage, source provenance, correspondence review, verification and release guidance.
 - `scripts/`, `.github/workflows/`: reproducible checks and fail-on-error CI.
-- `CITATION.cff`, `NOTICE.md`, `LICENSE_STATUS.md`: citation draft and scoped attribution/licensing.
+- `LICENSE`, `paper/LICENSE`, `CITATION.cff`, `NOTICE.md`, `LICENSE_STATUS.md`: scoped licences, manuscript rights, citation and attribution.
 
 ## Verify
 
@@ -45,6 +45,8 @@ A build alone is not the full verification. Required checks also compare the Cha
 
 The included manuscript sources are from revision `678f50ee1fd6c1f97ab92062f965063be28015af`; the supplied PDF is identified separately by its SHA-256 in [docs/source-provenance.json](docs/source-provenance.json). The mathematical Lean development originates at revision `8badbe471000b4e0f63d2e40b1ee784cb74c4556`, with prior evidence at `3ac917835b35e7b1d4b66f758f1b2a37a7f78826`. No sibling checkout or private source is required to build this package.
 
-For archival citation, use the DOI of the exact verified Zenodo release once it exists, as described in [docs/release.md](docs/release.md). The current `CITATION.cff` preserves the existing formalization attribution pending author confirmation. AI assistance is recorded in `formalization.yaml`; automated checks and agent review are not human peer review or Palomar registration.
+For archival citation, use the DOI of the exact verified Zenodo release once it exists, as described in [docs/release.md](docs/release.md). The formalization is credited to Chetan Gupta, Jukka Suomela, and Hossein Vahidi in `CITATION.cff` and `formalization.yaml`; Hossein Vahidi is the repository maintainer. AI assistance is recorded in `formalization.yaml`; automated checks and agent review are not human peer review or Palomar registration.
 
-Licensing for the new formalization and manuscript remains undecided. The retained Apache-2.0 licence applies only to the reused material identified in `NOTICE.md`.
+## Licence scope
+
+The Lean source code, verification/build scripts, and project documentation outside `paper/` are licensed under [Apache-2.0](LICENSE), except where another notice applies. **All contents of `paper/` are excluded from that licence** and are governed by the [separate manuscript rights notice](paper/LICENSE). Existing third-party attribution in [NOTICE.md](NOTICE.md) remains applicable. See [licensing and authorship](LICENSE_STATUS.md) for details.

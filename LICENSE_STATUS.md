@@ -1,9 +1,25 @@
-# Licensing status
+# Licensing and authorship
 
-No overall licence has been selected for the new Lean development, documentation, or bundled manuscript. This file records the unresolved status and grants no new permissions.
+The Lean source code, verification/build scripts, and project documentation
+outside `paper/` are licensed under [Apache-2.0](LICENSE), except where an
+existing third-party notice states otherwise. The standard licence text is
+unmodified. These terms were selected by the repository maintainer.
 
-The two proof adaptations identified in [NOTICE.md](NOTICE.md) retain their existing Apache-2.0 attribution and [licence text](docs/licenses/Apache-2.0.txt). Standard external Lean/Mathlib dependencies retain their own licences at their pinned repositories.
+**All contents of `paper/` are excluded from the root Apache-2.0 licence.**
+They retain the manuscript authors' copyright and the separate
+[manuscript rights notice](paper/LICENSE). This exclusion also covers the PDF,
+LaTeX files and bibliography. No CC licence or completed arXiv submission is
+asserted; record the actual arXiv choice if and when submitted.
 
-Before public release, the relevant rights holders must choose and approve the code/documentation licence and the manuscript licence (which may differ). Add the actual applicable licence texts and scope notices, then update `formalization.yaml` and `CITATION.cff`. Do not infer a whole-project licence from a template or dependency.
+The formalization is credited to **Chetan Gupta, Jukka Suomela, and Hossein
+Vahidi**, in that order, in `CITATION.cff` and `formalization.yaml`. Hossein
+Vahidi remains the repository maintainer. AI assistance is disclosed separately;
+author attribution does not assert human peer review or a registry endorsement.
 
-A recognized root licence for the submitted snapshot is a Palomar submission requirement. The current package is not represented as submission-ready.
+The two adapted proof files keep their original attribution and Apache-2.0
+terms in [NOTICE.md](NOTICE.md) and [the retained licence](docs/licenses/Apache-2.0.txt).
+External Lean/Mathlib dependencies keep their own licences. Citation metadata
+is separate from the scope of the permissions granted by each licence.
+
+Publication, hosted CI, releases, Palomar registration and Zenodo archival
+remain separate follow-up actions listed in [the release checklist](docs/release.md).

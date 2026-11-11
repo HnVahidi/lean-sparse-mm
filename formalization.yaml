@@ -10,10 +10,12 @@ project:
     program is not advertised. Numbered toolbox results are established by separate finite operational
     upper and lower bounds.
   authors:
+  - Chetan Gupta
+  - Jukka Suomela
   - Hossein Vahidi
   responsible_maintainers:
   - Hossein Vahidi
-  license: LicenseRef-Unspecified
+  license: Apache-2.0
 classification:
   arxiv:
   - cs.DC
@@ -33,9 +35,10 @@ sources:
     in paper/. Source repository revision 678f50ee1fd6c1f97ab92062f965063be28015af; the separately
     supplied PDF was untracked in that repository and is identified by its file hash. docs/source-provenance.json
     binds every supplied file. Unincluded beyond.tex is outside this manuscript. The current paper-to-type
-    review is in docs/coverage.md. Requesting-author participation does not assert coauthor endorsement
-    of the formalization.
-  license: unknown
+    review is in docs/coverage.md. Repository authorship credits all three manuscript authors at the
+    maintainer's instruction. AI review and any human review are recorded separately. The participating
+    requesting author is Hossein Vahidi; attribution does not assert personal review of every proof.
+  license: All rights reserved; paper/ is excluded from Apache-2.0
   author_endorsement: participated
 - title: Rectangular matrix multiplication finite static routing and balancing proofs
   type: earlier Lean formalization
@@ -87,8 +90,9 @@ automation:
   spend_usd: not tracked
   notes: Hossein Vahidi requested the formalization and companion preparation. Proof code and reviews
     were AI-assisted. Original proof-generation metadata identified GPT-6 in OpenAI Codex; companion
-    preparation uses GPT-6 Astra. AI assistance is not human authorship or expert review. Authorship
-    metadata preserves the earlier attribution pending release confirmation.
+    preparation uses GPT-6 Astra. AI assistance is not human authorship or expert review. The formalization
+    author list credits Chetan Gupta, Jukka Suomela and Hossein Vahidi at the maintainer's instruction.
+    AI systems are disclosed as tools, not authors.
 fidelity:
   divergences: Actual integer teams use h=Nat.sqrt(d)+1 and clusters of size d*h. Opposed batch permutations
     replace the paper's sorted cyclic assignment and establish the required count and weighted load
@@ -102,10 +106,10 @@ review:
   reviewers:
   - Codex paper and mathematical-construction reviewer (AI)
   - Codex finite load and operational-interface reviewers (AI)
-  notes: See docs/correspondence-review.md and docs/coverage.md. No human peer review, coauthor approval,
-    Palomar submission, acceptance, registration or Zenodo deposit is asserted. Licensing and final
-    formalization author attribution are release blockers. Hosted GitHub Actions has not run during
-    local preparation.
+  notes: See docs/correspondence-review.md and docs/coverage.md. No human peer review, Palomar submission,
+    acceptance, registration or Zenodo deposit is asserted. Code licensing and the three-author attribution
+    have been selected by the maintainer. paper/ retains its separate rights notice; no arXiv licence
+    has yet been recorded. Hosted GitHub Actions has not run during local preparation.
 alignment:
   namespace: SparseMM
   statements:
@@ -160,3 +164,16 @@ alignment:
     status: proved; alternative assignment meets literal strict bound
 acknowledgements: Lean, Mathlib, Comparator, NanoDa, con-ron, Bubblewrap, and the earlier Apache-2.0
   routing/balancing development identified in NOTICE.md.
+licensing:
+  code:
+    license: Apache-2.0
+    license_file: LICENSE
+    scope: Lean code, verification/build scripts and project documentation outside paper/, except
+      existing third-party notices
+    excluded_paths:
+    - paper/**
+  paper:
+    path: paper/
+    rights: All rights reserved
+    notice_file: paper/LICENSE
+    arxiv_license_status: Not yet selected or recorded

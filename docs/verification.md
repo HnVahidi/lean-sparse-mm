@@ -33,7 +33,9 @@ bash scripts/verify-isolated.sh
 The gate reads the regular Git blobs at `HEAD` and checks the copied bytes
 against a source manifest. It checks Lean source discipline and regeneration
 of the selected Challenge and Comparator interface, validates the two pinned
-metadata schemas, and checks the recorded paper, proof and attribution files.
+metadata schemas, checks the recorded paper, proof and attribution files, and
+checks the Apache-2.0 code licence, explicit paper/ exclusion and consistent
+formalization/source author lists.
 Lake materializes the existing manifest. The gate checks each dependency's
 origin and revision, checks tracked source cleanliness, and verifies Mathlib's
 toolchain and inherited pins. It fetches cache data for the declared Mathlib
@@ -58,6 +60,8 @@ it can be read independently of the machine that ran the check. Inspect
 with the kernel report. The temporary source and dependency directory is
 removed after the run.
 
-The [evidence directory](evidence/) contains the retained standalone result.
+The [original evidence directory](evidence/) contains the retained standalone result.
+The [licensing-update evidence](evidence/licensing-update/README.md) records the
+subsequent code-licence and three-author metadata verification.
 The Actions workflow is prepared for a future hosted checkout. The current
 verification takes place locally in Linux under WSL.

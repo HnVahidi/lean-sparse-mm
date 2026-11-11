@@ -1,9 +1,14 @@
 # Release and archival checklist
 
-## Decisions before publication
+## Confirmed licensing and credit
 
-- Approve licences for the new code/documentation and for `paper/`; retain the scoped Apache notice. See [licensing status](../LICENSE_STATUS.md).
-- Confirm the formalization author list in `CITATION.cff` and `formalization.yaml`. The current entry preserves the earlier formalization's attribution to Hossein Vahidi; manuscript authorship remains Gupta, Suomela and Vahidi. AI assistance is disclosed separately.
+- Apache-2.0 applies to the code, scripts and project documentation outside `paper/`, subject to retained third-party notices.
+- `paper/` is excluded and retains the authors' copyright under its separate rights notice. No arXiv licence or CC licence has been applied here.
+- The formalization author list is Chetan Gupta, Jukka Suomela and Hossein Vahidi, in manuscript order. Hossein Vahidi is the maintainer; AI assistance is disclosed separately.
+
+## Steps before publication
+
+- Record the actual arXiv identifier and submission licence once chosen and issued. Keep the manuscript exclusion explicit in any public release. See [licensing and authorship](../LICENSE_STATUS.md).
 - Approve the coverage description, including the scalar-message theorem, shared codec premise, finite classical public choices, and the explicit rounding/output-balancing variants. A fully composed bit-vector implementation is not claimed. If the release is to advertise complete formal verification of that representation, finish the encoded-program and bit-budget bridge first; otherwise keep the scalar/encoding qualification in the public claim.
 - Choose the public repository owner, release version and tag. The requested repository name is `lean-sparse-mm`; no public repository or release is created by this local preparation.
 - Review the final snapshot and its mechanical evidence. Run the Actions workflow on the exact public commit after publishing; a prepared workflow is not a successful hosted CI run.
@@ -18,7 +23,7 @@
 
 Suggested citation form, to fill only after approval and archival:
 
-> Confirmed formalization authors. *lean-sparse-mm: Lean companion for sparse matrix multiplication*. Release TAG, source commit COMMIT. Zenodo. ACTUAL VERSION DOI.
+> Chetan Gupta, Jukka Suomela, and Hossein Vahidi. *lean-sparse-mm: Lean companion for sparse matrix multiplication*. Release TAG, source commit COMMIT. Zenodo. ACTUAL VERSION DOI.
 
 The capitalized fields above are instructions, not assigned identifiers. Copy the final citation from the actual Zenodo landing page and verify its metadata. Cite the manuscript separately when discussing the mathematical result.
 
