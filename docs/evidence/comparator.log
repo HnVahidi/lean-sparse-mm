@@ -1,0 +1,72 @@
+Resolving dependencies
+Building Challenge
+⚠ [2038/2039] Replayed Challenge
+warning: Challenge.lean:65:8: declaration uses `sorry`
+warning: Challenge.lean:144:8: declaration uses `sorry`
+warning: Challenge.lean:155:8: declaration uses `sorry`
+warning: Challenge.lean:241:8: declaration uses `sorry`
+warning: Challenge.lean:247:8: declaration uses `sorry`
+warning: Challenge.lean:264:8: declaration uses `sorry`
+warning: Challenge.lean:271:8: declaration uses `sorry`
+warning: Challenge.lean:286:8: declaration uses `sorry`
+warning: Challenge.lean:292:8: declaration uses `sorry`
+warning: Challenge.lean:395:8: declaration uses `sorry`
+warning: Challenge.lean:426:8: declaration uses `sorry`
+warning: Challenge.lean:445:8: declaration uses `sorry`
+warning: Challenge.lean:516:8: declaration uses `sorry`
+warning: Challenge.lean:541:8: declaration uses `sorry`
+warning: Challenge.lean:576:8: declaration uses `sorry`
+warning: Challenge.lean:585:8: declaration uses `sorry`
+warning: Challenge.lean:594:8: declaration uses `sorry`
+warning: Challenge.lean:610:8: declaration uses `sorry`
+warning: Challenge.lean:615:8: declaration uses `sorry`
+warning: Challenge.lean:619:8: declaration uses `sorry`
+warning: Challenge.lean:624:8: declaration uses `sorry`
+warning: Challenge.lean:636:8: declaration uses `sorry`
+warning: Challenge.lean:658:8: declaration uses `sorry`
+warning: Challenge.lean:679:8: declaration uses `sorry`
+warning: Challenge.lean:692:8: declaration uses `sorry`
+Build completed successfully (2039 jobs).
+Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, SparseMM.exists_clustering, SparseMM.threshold_le_two_mul_sqrt, SparseMM.OutputAssignment.exists_balanced_output_assignment, SparseMM.Model.executeFrom_delivers, SparseMM.Model.exists_public_redistribution, SparseMM.Model.actual_send_capacity, SparseMM.Model.actual_receive_capacity, SparseMM.ExactRouting.exists_schedule, SparseMM.ExactRouting.exists_public_redistribution, SparseMM.Wire.receive_eq_model, SparseMM.Wire.encodedReceive_eq_model, SparseMM.supported_sparse_mm, SparseMM.BroadcastLower.System.broadcast_requires_rounds, SparseMM.AggregationLower.or_requires_rounds, SparseMM.AggregationLower.and_requires_rounds, SparseMM.AggregationLower.sum_requires_rounds, SparseMM.ToolboxComplexity.log_div_le_rounds, SparseMM.ToolboxComplexity.clog_two_le_log_div_add_one, SparseMM.ToolboxComplexity.pipeline_rounds_le, SparseMM.ToolboxComplexity.single_value_rounds_le_log, SparseMM.PipelinedBroadcast.exists_broadcast, SparseMM.PipelinedAggregation.exists_aggregation, SparseMM.exists_strict_output_plan, SparseMM.BooleanAggregation.exists_and, SparseMM.BooleanAggregation.exists_or, propext, Quot.sound, Classical.choice, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam, SparseMM.Mask, SparseMM.rowMask, SparseMM.colMask, SparseMM.UniformSparse, SparseMM.middleSet, SparseMM.residualWeight, SparseMM.teamSize, SparseMM.threshold, SparseMM.FitsRectangle, SparseMM.ResidualSparse, SparseMM.Counting.load, SparseMM.Counting.count, SparseMM.Algebra.SupportedBy, SparseMM.HelperPlan.Input, SparseMM.Routing.LegalOn, SparseMM.Model.LocalState, SparseMM.Model.Configuration, SparseMM.Model.initial, SparseMM.Model.outgoingLabel, SparseMM.Model.incomingLabel, SparseMM.Model.send, SparseMM.Model.receive, SparseMM.Model.accept, SparseMM.Model.step, SparseMM.Model.executeFrom, SparseMM.Model.execute, SparseMM.Model.transmitted, SparseMM.LocalPipeline.Stage.run, SparseMM.LocalPipeline.Program.rounds, SparseMM.LocalPipeline.Program.execute, SparseMM.LocalPipeline.Program.output, SparseMM.Computation.inputValue, SparseMM.SupportedProgram.View, SparseMM.SupportedProgram.views, SparseMM.OutputAssignment.weightedLoad, SparseMM.OutputAssignment.assignedCount, SparseMM.Wire.send, SparseMM.Wire.receive, SparseMM.Wire.encodedSend, SparseMM.Wire.encodedReceive, SparseMM.Signatures.StaticPlan_constructor, SparseMM.Signatures.Stage_constructor, SparseMM.Signatures.Program_constructor, SparseMM.Signatures.Clustering_constructor, SparseMM.Signatures.BroadcastSystem_constructor, SparseMM.BroadcastLower.System.inbox, SparseMM.BroadcastLower.System.LegalAt, SparseMM.BroadcastLower.System.step, SparseMM.BroadcastLower.System.execute, SparseMM.BroadcastLower.changed, SparseMM.BroadcastLower.System.destinations, SparseMM.BooleanDegree.Cube, SparseMM.AggregationLower.initialConfiguration] from Challenge
+Building Solution
+⚠ [2062/2075] Replayed SparseMM.BroadcastLower
+warning: SparseMM/BroadcastLower.lean:146:56: This simp argument is unused:
+  Nat.mul_left_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [pow_succ, Nat.mul_assoc, Nat.mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [2068/2075] Replayed SparseMM.Wire
+warning: SparseMM/Wire.lean:37:0: automatically included section variable(s) unused in theorem `SparseMM.Wire.receive_eq_model`:
+  [DecidableEq Packet]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Packet] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2070/2075] Replayed SparseMM.BooleanDegree
+warning: SparseMM/BooleanDegree.lean:67:12: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [2071/2075] Replayed SparseMM.AggregationLower
+warning: SparseMM/AggregationLower.lean:168:16: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Build completed successfully (2075 jobs).
+Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, SparseMM.exists_clustering, SparseMM.threshold_le_two_mul_sqrt, SparseMM.OutputAssignment.exists_balanced_output_assignment, SparseMM.Model.executeFrom_delivers, SparseMM.Model.exists_public_redistribution, SparseMM.Model.actual_send_capacity, SparseMM.Model.actual_receive_capacity, SparseMM.ExactRouting.exists_schedule, SparseMM.ExactRouting.exists_public_redistribution, SparseMM.Wire.receive_eq_model, SparseMM.Wire.encodedReceive_eq_model, SparseMM.supported_sparse_mm, SparseMM.BroadcastLower.System.broadcast_requires_rounds, SparseMM.AggregationLower.or_requires_rounds, SparseMM.AggregationLower.and_requires_rounds, SparseMM.AggregationLower.sum_requires_rounds, SparseMM.ToolboxComplexity.log_div_le_rounds, SparseMM.ToolboxComplexity.clog_two_le_log_div_add_one, SparseMM.ToolboxComplexity.pipeline_rounds_le, SparseMM.ToolboxComplexity.single_value_rounds_le_log, SparseMM.PipelinedBroadcast.exists_broadcast, SparseMM.PipelinedAggregation.exists_aggregation, SparseMM.exists_strict_output_plan, SparseMM.BooleanAggregation.exists_and, SparseMM.BooleanAggregation.exists_or, propext, Quot.sound, Classical.choice, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam, SparseMM.Mask, SparseMM.rowMask, SparseMM.colMask, SparseMM.UniformSparse, SparseMM.middleSet, SparseMM.residualWeight, SparseMM.teamSize, SparseMM.threshold, SparseMM.FitsRectangle, SparseMM.ResidualSparse, SparseMM.Counting.load, SparseMM.Counting.count, SparseMM.Algebra.SupportedBy, SparseMM.HelperPlan.Input, SparseMM.Routing.LegalOn, SparseMM.Model.LocalState, SparseMM.Model.Configuration, SparseMM.Model.initial, SparseMM.Model.outgoingLabel, SparseMM.Model.incomingLabel, SparseMM.Model.send, SparseMM.Model.receive, SparseMM.Model.accept, SparseMM.Model.step, SparseMM.Model.executeFrom, SparseMM.Model.execute, SparseMM.Model.transmitted, SparseMM.LocalPipeline.Stage.run, SparseMM.LocalPipeline.Program.rounds, SparseMM.LocalPipeline.Program.execute, SparseMM.LocalPipeline.Program.output, SparseMM.Computation.inputValue, SparseMM.SupportedProgram.View, SparseMM.SupportedProgram.views, SparseMM.OutputAssignment.weightedLoad, SparseMM.OutputAssignment.assignedCount, SparseMM.Wire.send, SparseMM.Wire.receive, SparseMM.Wire.encodedSend, SparseMM.Wire.encodedReceive, SparseMM.Signatures.StaticPlan_constructor, SparseMM.Signatures.Stage_constructor, SparseMM.Signatures.Program_constructor, SparseMM.Signatures.Clustering_constructor, SparseMM.Signatures.BroadcastSystem_constructor, SparseMM.BroadcastLower.System.inbox, SparseMM.BroadcastLower.System.LegalAt, SparseMM.BroadcastLower.System.step, SparseMM.BroadcastLower.System.execute, SparseMM.BroadcastLower.changed, SparseMM.BroadcastLower.System.destinations, SparseMM.BooleanDegree.Cube, SparseMM.AggregationLower.initialConfiguration] from Solution
+Running con-ron kernel on solution
+con-ron: 1 inductive blocks modelled in-process: Lean.Syntax (30 generated records, checked by the fold as declarations and not counted as records of the file)
+con-ron: accepted 17745 declarations (--verified)
+con-ron kernel accepts the solution
+Running nanoda kernel on solution
+nanoda kernel accepts the solution
+Running Lean default kernel on solution
+Lean default kernel accepts the solution
+Your solution is okay!

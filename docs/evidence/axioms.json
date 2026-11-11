@@ -1,0 +1,353 @@
+{
+  "generated_at_utc": "2026-11-11T04:05:19.841979+00:00",
+  "declarations": {
+    "SparseMM.exists_clustering": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.threshold_le_two_mul_sqrt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.OutputAssignment.exists_balanced_output_assignment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Model.executeFrom_delivers": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Model.exists_public_redistribution": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Model.actual_send_capacity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Model.actual_receive_capacity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.ExactRouting.exists_schedule": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.ExactRouting.exists_public_redistribution": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Wire.receive_eq_model": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Wire.encodedReceive_eq_model": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.supported_sparse_mm": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.BroadcastLower.System.broadcast_requires_rounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.AggregationLower.or_requires_rounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.AggregationLower.and_requires_rounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.AggregationLower.sum_requires_rounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.ToolboxComplexity.log_div_le_rounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.ToolboxComplexity.clog_two_le_log_div_add_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.ToolboxComplexity.pipeline_rounds_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.ToolboxComplexity.single_value_rounds_le_log": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.PipelinedBroadcast.exists_broadcast": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.PipelinedAggregation.exists_aggregation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.exists_strict_output_plan": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.BooleanAggregation.exists_and": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.BooleanAggregation.exists_or": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Mask": [
+      "propext",
+      "Quot.sound"
+    ],
+    "SparseMM.rowMask": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.colMask": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.UniformSparse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.middleSet": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.residualWeight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.teamSize": [],
+    "SparseMM.threshold": [],
+    "SparseMM.FitsRectangle": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.ResidualSparse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Counting.load": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Counting.count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Algebra.SupportedBy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.HelperPlan.Input": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Routing.LegalOn": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Model.LocalState": [],
+    "SparseMM.Model.Configuration": [],
+    "SparseMM.Model.initial": [],
+    "SparseMM.Model.outgoingLabel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Model.incomingLabel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Model.send": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Model.receive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Model.accept": [],
+    "SparseMM.Model.step": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Model.executeFrom": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Model.execute": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Model.transmitted": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.LocalPipeline.Stage.run": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.LocalPipeline.Program.rounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.LocalPipeline.Program.execute": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.LocalPipeline.Program.output": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Computation.inputValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.SupportedProgram.View": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.SupportedProgram.views": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.OutputAssignment.weightedLoad": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.OutputAssignment.assignedCount": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Wire.send": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Wire.receive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Wire.encodedSend": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Wire.encodedReceive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Signatures.StaticPlan_constructor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Signatures.Stage_constructor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Signatures.Program_constructor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Signatures.Clustering_constructor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.Signatures.BroadcastSystem_constructor": [],
+    "SparseMM.BroadcastLower.System.inbox": [],
+    "SparseMM.BroadcastLower.System.LegalAt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.BroadcastLower.System.step": [],
+    "SparseMM.BroadcastLower.System.execute": [],
+    "SparseMM.BroadcastLower.changed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.BroadcastLower.System.destinations": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "SparseMM.BooleanDegree.Cube": [],
+    "SparseMM.AggregationLower.initialConfiguration": []
+  },
+  "permitted_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "passed": true,
+  "prohibited": {}
+}

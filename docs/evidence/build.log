@@ -1,0 +1,88 @@
+✔ [2040/2078] Built SparseMM.Counting (2.5s)
+✔ [2041/2078] Built SparseMM.Masks (2.5s)
+✔ [2042/2078] Built SparseMM.Balancing (2.5s)
+✔ [2043/2078] Built SparseMM.PermutationBalancing (2.3s)
+✔ [2044/2078] Built SparseMM.Algebra (2.3s)
+⚠ [2045/2078] Built SparseMM.BroadcastLower (2.3s)
+warning: SparseMM/BroadcastLower.lean:146:56: This simp argument is unused:
+  Nat.mul_left_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [pow_succ, Nat.mul_assoc, Nat.mul_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+✔ [2046/2078] Built SparseMM.Routing (2.4s)
+✔ [2047/2078] Built SparseMM.Clustering (2.8s)
+✔ [2048/2078] Built SparseMM.Rounding (2.8s)
+✔ [2049/2078] Built SparseMM.ToolboxComplexity (3.1s)
+⚠ [2050/2078] Built SparseMM.BooleanDegree (3.2s)
+warning: SparseMM/BooleanDegree.lean:67:12: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [2051/2078] Built Challenge (3.7s)
+warning: Challenge.lean:65:8: declaration uses `sorry`
+warning: Challenge.lean:144:8: declaration uses `sorry`
+warning: Challenge.lean:155:8: declaration uses `sorry`
+warning: Challenge.lean:241:8: declaration uses `sorry`
+warning: Challenge.lean:247:8: declaration uses `sorry`
+warning: Challenge.lean:264:8: declaration uses `sorry`
+warning: Challenge.lean:271:8: declaration uses `sorry`
+warning: Challenge.lean:286:8: declaration uses `sorry`
+warning: Challenge.lean:292:8: declaration uses `sorry`
+warning: Challenge.lean:395:8: declaration uses `sorry`
+warning: Challenge.lean:426:8: declaration uses `sorry`
+warning: Challenge.lean:445:8: declaration uses `sorry`
+warning: Challenge.lean:516:8: declaration uses `sorry`
+warning: Challenge.lean:541:8: declaration uses `sorry`
+warning: Challenge.lean:576:8: declaration uses `sorry`
+warning: Challenge.lean:585:8: declaration uses `sorry`
+warning: Challenge.lean:594:8: declaration uses `sorry`
+warning: Challenge.lean:610:8: declaration uses `sorry`
+warning: Challenge.lean:615:8: declaration uses `sorry`
+warning: Challenge.lean:619:8: declaration uses `sorry`
+warning: Challenge.lean:624:8: declaration uses `sorry`
+warning: Challenge.lean:636:8: declaration uses `sorry`
+warning: Challenge.lean:658:8: declaration uses `sorry`
+warning: Challenge.lean:679:8: declaration uses `sorry`
+warning: Challenge.lean:692:8: declaration uses `sorry`
+✔ [2053/2078] Built SparseMM.OutputAssignment (1.7s)
+✔ [2054/2078] Built SparseMM.Model (1.8s)
+✔ [2055/2078] Built SparseMM.ResidualDelivery (1.8s)
+✔ [2056/2078] Built SparseMM.AggregationModel (2.5s)
+✔ [2057/2078] Built SparseMM.ClusterLoads (2.5s)
+✔ [2058/2078] Built SparseMM.Complexity (2.4s)
+✔ [2059/2078] Built SparseMM.Multicast (1.7s)
+⚠ [2060/2078] Built SparseMM.Wire (1.5s)
+warning: SparseMM/Wire.lean:37:0: automatically included section variable(s) unused in theorem `SparseMM.Wire.receive_eq_model`:
+  [DecidableEq Packet]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Packet] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [2061/2078] Built SparseMM.LocalPipeline (1.6s)
+✔ [2062/2078] Built SparseMM.ExactRouting (1.0s)
+✔ [2063/2078] Built SparseMM.OutputPlan (2.1s)
+✔ [2064/2078] Built SparseMM.PartialDelivery (2.1s)
+✔ [2065/2078] Built SparseMM.PipelinedBroadcast (2.8s)
+⚠ [2066/2078] Built SparseMM.AggregationLower (2.4s)
+warning: SparseMM/AggregationLower.lean:168:16: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+✔ [2067/2078] Built SparseMM.BooleanAggregation (1.0s)
+✔ [2068/2078] Built SparseMM.HelperPlan (3.6s)
+✔ [2069/2078] Built SparseMM.InputGather (1.3s)
+✔ [2070/2078] Built SparseMM.Computation (1.9s)
+✔ [2071/2078] Built SparseMM.Plan (1.7s)
+✔ [2072/2078] Built SparseMM.Program (1.5s)
+✔ [2073/2078] Built SparseMM.Main (1.0s)
+✔ [2074/2078] Built SparseMM.Signatures (927ms)
+✔ [2075/2078] Built SparseMM (883ms)
+✔ [2077/2078] Built Solution (1.0s)
+Build completed successfully (2078 jobs).
