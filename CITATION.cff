@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+type: software
+title: "lean-sparse-mm: Lean companion for sparse matrix multiplication"
+message: >-
+  Local citation draft. Existing formalization attribution is retained pending
+  confirmation of the release author list and licences. After archival, cite
+  the specific verified Zenodo version using its actual version DOI and tag.
+  No DOI, release date, or public repository URL has yet been assigned here.
+authors:
+  - family-names: Vahidi
+    given-names: Hossein
+    orcid: "https://orcid.org/0000-0002-0040-1213"
+abstract: >-
+  Lean proofs and operational models for supported sparse matrix multiplication,
+  with a paper-to-formalization audit, reproducible kernel checks, and explicit
+  scalar-message and encoding assumptions.
+keywords:
+  - Lean
+  - formal verification
+  - sparse matrix multiplication
+  - distributed algorithms
+references:
+  - type: unpublished
+    title: "Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model"
+    authors:
+      - family-names: Gupta
+        given-names: Chetan
+        orcid: "https://orcid.org/0000-0002-0727-160X"
+      - family-names: Suomela
+        given-names: Jukka
+        orcid: "https://orcid.org/0000-0001-6117-8089"
+      - family-names: Vahidi
+        given-names: Hossein
+        orcid: "https://orcid.org/0000-0002-0040-1213"
+    notes: "Author-supplied manuscript included in paper/; no arXiv identifier or DOI is asserted."

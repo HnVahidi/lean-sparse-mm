@@ -1,0 +1,49 @@
+name: Lean verification
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verification:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Check the statement interface before building
+        run: |
+          python3 scripts/check_sources.py
+          python3 scripts/build_challenge.py --check
+      - uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          auto-config: 'false'
+          build: 'false'
+          test: 'false'
+          lint: 'false'
+          use-mathlib-cache: 'false'
+          use-github-cache: 'false'
+      - name: Build the pinned Bubblewrap sandbox
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends meson ninja-build libcap-dev pkg-config python3-yaml python3-jsonschema
+          bash scripts/install-bubblewrap.sh "$RUNNER_TEMP/bwrap-bin"
+          # The disposable Ubuntu runner restricts unprivileged namespaces by default.
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+      - name: Verify this commit in a fresh source and dependency tree
+        run: |
+          export PATH="$RUNNER_TEMP/bwrap-bin:/usr/bin:$PATH"
+          bash scripts/verify-isolated.sh
+      - name: Retain verification evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: lean-verification-${{ github.sha }}
+          path: .lake/verification/run-*/
+          include-hidden-files: true
+          if-no-files-found: error

@@ -1,0 +1,7 @@
+* text=auto eol=lf
+paper/** -text
+*.pdf binary
+
+# Preserve the author-supplied manuscript bytes, including original whitespace.
+paper/*.tex -whitespace
+paper/*.bib -whitespace

@@ -1,0 +1,225 @@
+% !TeX root = main.tex
+\section{Fast Multiplication with Support} \label{sec:ub}
+In this section we prove our main result, an $O(d^{3/2})$-round sparse matrix multiplication algorithm. We first give a bird's-eye view of the algorithm and then prove the following.
+
+\begin{theorem}\label{thm:fs-upper-bound}
+	There is a deterministic algorithm that solves any instance of uniformly sparse matrix multiplication in $O(\upbound)$ rounds in the supported low-bandwidth model.
+\end{theorem}
+
+\subsection{Overview}
+Let $Q$ be the set of requested output positions in $\bar{X}$. We plan to partition $Q$ into two parts: (i) a set of clusters of many positions bounded in a small rectangle in $\bar{X}$, (ii) the remainder of unclustered positions that now have an extra sparsity structure. Then we process these positions separately and send the results or subproducts (i.e. contributions to a requested position of $X$) to the final holder of the output assigned in the distribution.
+
+
+\paragraph{Step 1.~ Find clusters of densely packed positions.}
+Set $t=d^{3/2}$. Repeatedly select $t$ requested
+positions of $Q$ lying in at most $d$ rows and $d$ columns (i.e. a rectangle), form a cluster, and remove these positions from $Q$.
+This produces at most $n/\sqrt d$ clusters. Let $Q_r$ be the set of remaining
+positions, which contains fewer than $t$ positions
+in every such rectangle.
+
+We choose one public output assignment for both parts, balancing
+output counts and the contributions received for $Q_r$.
+
+\paragraph{Step 2.~Compute the clustered entries.}
+Give each cluster a team of $\sqrt d$ machines and process all clusters in parallel. Assign the middle indices
+$j$ to team members so that their input loads are balanced: a member that is assigned $j$ requires entries of column $j$ of $A$ and row $j$ of $B$, $2d$ in total. Moreover, the greedy assignment gives each member $O(d^{3/2})$ input entries.
+
+
+
+\paragraph{Step 3.~Compute the remaining entries.}
+Machine $j$ collects column $j$ of $A$ and row $j$ of $B$. Now we take advantage of the new sparsity structure: all possible subproducts that $j$ computes belong to a rectangle of $d$ rows and $d$ columns; therefore it has fewer than $t$ subproducts to compute. Then machine $j$ sends these products directly to their output holders, where the holders add the contributions from all middle indices. Each machine sends fewer than $t$ products, and our output assignment ensures
+that each holder receives $O(t)$ products. Thus this phase
+also takes $O(t)$ rounds.
+
+
+
+
+
+
+
+
+
+%%%%%%%%---------------------------------------
+\subsection{Proof of \Cref{thm:fs-upper-bound}}
+
+
+%%%%%%%%---------------------------------------
+\subsubsection{Step 1.~Clustering dense rectangles of $\bar{X}$.}
+We set the threshold parameter $t$ to $d^{3/2}$. Then for every pair of subsets $I',K' \subseteq [n]$ of indices such that $|I'|,|K'| \leq d$, consider $Q\cap(I'\times K')$, i.e.~ a rectangular submatrix of $X$: check whether there are at least $t$ marked positions; if so, choose exactly $t$ of them, form a cluster $C_1$ with these $t$ positions and remove them from $Q$. Repeat this process until there are no such dense submatrices and form the set of clusters $\clusters =\{C_1,C_2,\ldots \}$. Let $Q_r$ be the remaining unclustered marked positions in $Q$. The key observation is that machines can compute these clusters in a globally consistent manner.
+
+\begin{observation}[clustering without communication]
+	The above clustering process can be done deterministically and individually by machines without communication; all machines will compute $\clusters$ and $Q_r$. The only information needed is the global support. Then every selection of indices $I'$, $K'$, and marked positions of $Q\cap(I'\times K')$ is done in lexicographical order. This ensures unique $\clusters$ and $Q_r$.
+\end{observation}
+	For the remainder of this section assume that all machines have computed $\clusters$ and $Q_r$. We can show that there are few clusters:
+\begin{lemma}
+	There are at most $n/\sqrt d$ clusters of size exactly $d^{3/2}$.
+\end{lemma}
+\begin{proof}
+	The original output mask $\bar{X}$ contains at most $nd$ marked positions.
+	Each cluster removes exactly $t$ distinct positions; therefore
+	$|\clusters|\le nd/t$. Also, $|Q_r|\le nd$.
+
+\end{proof}
+
+\paragraph{Output assignment.}
+For each $(i,k)\in Q_r$, use the number of indices $j$ with
+$\bar A_{ij}=\bar B_{jk}=1$ as its weight. Order all requested positions of the original mask $\bar X$ by decreasing weight, breaking ties lexicographically, and assign them cyclically to machines $1,\ldots,n$.
+Each machine gets at most $|\bar X|/n=nd/n\le d$ positions.
+This assignment is computed locally without communication and
+kept fixed throughout the algorithm.
+
+%%%%%%%%---------------------------------------
+\subsubsection{Step 2.~Compute the clustered entries.}
+Give each cluster $C\in\clusters$ a distinct and disjoint team
+$T_C=\{m_1,\ldots,m_{\sqrt d}\}$ of helper machines. We can assign them deterministically by their id: let the first $\sqrt{d}$ machines be the helper team for the first cluster, and so on.
+Let $I_C$ and $K_C$ be the row and column indices occurring in
+the selected positions of $C$. Note that both sets have size at most $d$.
+We assign each middle index $j\in[n]$ to one team member and
+write $J(C,m_p)$ for the indices assigned to $m_p$.
+Each member will compute partial sums for positions $(i,k)\in C$
+using its assigned middle indices. Assigning middle index $j$ to a member means assigning it the marked entries $A_{ij}$ with $i\in I_C$ and
+$B_{jk}$ with $k\in K_C$. The following lemma shows that we can spread the work between machines without congesting a node. 
+
+
+\begin{lemma}[greedy assignment]\label{lem:greedy-assignment}
+	The sets $J(C,m_p)$ can be chosen deterministically and locally,
+	without communication, so that they partition $[n]$ and each
+	team member requires at most $O(d^{3/2})$ marked input entries.
+\end{lemma}
+\begin{proof}
+	Fix a cluster $C$. Denote by
+	\[
+	  c_j=
+	  |\{i\in I_C:\bar A_{ij}=1\}|
+	  +|\{k\in K_C:\bar B_{jk}=1\}|,
+	\]
+	the number of marked entries that $j$ participates in. Each $c_j\le 2d$. Moreover, the marked entries in rows $I_C$
+	of $A$ and columns $K_C$ of $B$ number at most $2d^2$ in total,
+	so $\sum_j c_j\le 2d^2$.
+
+	We assign the middle indices in increasing order. Assign each
+	index to a team member with the fewest currently assigned
+	input entries. Before an
+	assignment, this minimum load is at most the average load
+	and hence at most $2d^2/\sqrt d$. The assignment adds at most
+	$2d$ entries. Thus every team member requires at most
+	\[
+	  \frac{2d^2}{\sqrt d}+2d=2d^{3/2}+2d = O(d^{3/2})
+	\]
+	entries. All counts and choices depend only on
+	the public masks, so every machine can compute the assignment
+	locally without communication.
+\end{proof}
+
+
+
+\begin{lemma}\label{lem:compute-clustered}
+	All output positions in the clusters $\clusters$ can be
+	computed and delivered to their assigned output holders in
+	$O(\upbound)$ rounds.
+\end{lemma}
+\begin{proof}
+	By \Cref{lem:greedy-assignment}, each team member needs at most
+	$L=O(d^{3/2})$ input entries.
+
+	\paragraph{Gathering the inputs.}
+	An entry $A_{ij}$ is needed only by clusters containing row $i$,
+	and by one member per cluster. Since the clusters are disjoint
+	and row $i$ has at most $d$ requested positions, there are at most
+	$d$ recipients. The same argument applies to $B_{jk}$ using
+	column $k$. Let $f_e\le d$ be the number of recipients of each
+	needed entry $e$, and let $R=\sum_e f_e\leq nL$.
+
+	Process these entries in a fixed publicly known order. Assign each
+	to the broadcasting machine with the fewest currently assigned
+	copies to send.
+	Each assignment adds at most $d$ copies, so the same greedy
+	argument gives at most $R/n+d\le L+d$ copies per broadcasting
+	machine. It also needs at most $L+d$ distinct entries, since
+	each assigned entry has at least one recipient.
+
+	First, original holders send one copy of each needed entry to
+	its broadcasting machine: each holder sends $O(d)$ values and
+	each broadcaster receives at most $L+d$. The broadcasters then
+	send the copies to the team members: each sends at most $L+d$
+	copies and each member receives at most $L$. These schedules
+	are public, so \Cref{lem:redistribution-offline} implements both
+	stages in $O(L+d)=O(d^{3/2})$ rounds.
+
+	\paragraph{Computing and delivering partial sums.}
+	Each member $m_p\in T_C$ computes
+	\[
+	  S_{C,p}(i,k)=\sum_{j\in J(C,m_p)}A_{ij}B_{jk},
+	  \qquad (i,k)\in C,
+	\]
+	and sends these values to the assigned output holders.
+	Each member sends $|C|=d^{3/2}$ partial sums. Each holder has
+	$O(d)$ output positions and receives $\sqrt d$ partial sums
+	per clustered position, hence $O(d^{3/2})$ values in total.
+	This redistribution also takes $O(d^{3/2})$ rounds. All clusters are
+	processed in parallel, which gives $O(\upbound)$ rounds overall.
+\end{proof}
+
+
+
+%%%%%%%%---------------------------------------
+\subsubsection{Step 3.~Compute the remaining entries.}
+We compute the remaining positions of $Q_r$ by computing their intermediate products first, then adding those products at the final output holders.
+
+A key observation here is that $Q_r$ now has additional sparsity structure: small rectangles in $Q_r$ have few unclustered positions.
+
+\begin{observation}\label{obs:remainder-sparsity}
+	At termination,
+	\[
+	|Q_r\cap(I'\times K')|<t
+	\]
+	for all $I',K'\subseteq[n]$ with $|I'|,|K'|\le d$.
+	This follows directly from the stopping condition of the clustering.
+\end{observation}
+
+\begin{lemma}[output assignment]\label{lem:output-assignment}
+	Each output holder receives fewer than $t+d$ contributions
+	in Step~3.
+\end{lemma}
+\begin{proof}
+	Let $L_r$ be machine $r$'s total assigned weight and let $P=\sum_r L_r$.
+	Observation~\ref{obs:remainder-sparsity} gives fewer than $t$
+	contributions for a fixed middle index, so $P<nt$. Each weight is
+	at most $d$.
+
+	The sorted cyclic order gives $L_1\ge L_r\ge L_n$,
+	treating missing weights in the last cycle as zero.
+	Every weight on machine $1$ after its first is bounded by
+	the preceding weight on machine $n$. Hence
+	\[
+	  L_r\le L_1\le L_n+d\le P/n+d<t+d.
+	\]
+\end{proof}
+
+\begin{lemma}\label{lem:compute-remainder}
+	We can compute output positions $Q_r$ and route them to their assigned output holder in $O(\upbound)$ rounds.
+\end{lemma}
+\begin{proof}
+	First, each original holder sends a copy of every marked entry
+	$A_{ij}$ and $B_{jk}$ to machine $j$. Each holder sends $O(d)$
+	values and each receiver gets at most $2d$. This takes $O(d)$
+	rounds by \Cref{lem:redistribution-offline}.
+
+	Machine $j$ computes $A_{ij}B_{jk}$ for each $(i,k)\in Q_r$
+	that has both its input positions marked. There are at most $d$
+	possible rows $i$ and $d$ possible columns $k$, so
+	Observation~\ref{obs:remainder-sparsity} gives fewer than $t$
+	such products.
+
+	Send each product, tagged by $(i,k)$, directly to its assigned
+	output holder.
+	Each machine sends fewer than $t$ products, and by
+	\Cref{lem:output-assignment} each holder receives fewer than
+	$t+d$. This public redistribution takes $O(t+d)$ rounds. Then each holder locally adds the contributions for each of its positions
+	in $Q_r$. The total cost is $O(d)+O(t+d)=O(\upbound)$ rounds.
+\end{proof}
+
+
+\begin{proof}[Proof of \Cref{thm:fs-upper-bound}]
+	It follows by combining all three steps, and in particular \Cref{lem:compute-clustered} and \Cref{lem:compute-remainder}.
+\end{proof}

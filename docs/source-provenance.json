@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "manuscript": {
+    "title": "Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model",
+    "source_revision": "678f50ee1fd6c1f97ab92062f965063be28015af",
+    "source_directory": "arxiv",
+    "pdf_tracked_in_source_git": false,
+    "pdf_sha256": "37ff1c413e7b088bf4364e64c8886128e5fbc566e3abebb6a59c5c2a79e42672",
+    "files": {
+      "conclusions.tex": "5f2a52291284dce4e066c58db6554d08164d6ee1de700477fd23f7a1f85ed00e",
+      "da.bib": "e1297ed5b251fb992e93c3f4a7bdef2294686cd8fdf4f2e157df7b2a839f5009",
+      "introduction.tex": "6cad3690266b31d72f5c49ae97964628982c4fabed7a761d470496cfe4665119",
+      "main.tex": "7295a3696803dbe117af5378b6ca21423b19a74d2410685f18ce6f71f71c3ff5",
+      "preliminaries.tex": "f6d829cc85a6337168dcb75ef001b40d47fe933fa349aaa18bc6ce748f98fe51",
+      "sparse-mm.pdf": "37ff1c413e7b088bf4364e64c8886128e5fbc566e3abebb6a59c5c2a79e42672",
+      "ub.tex": "0301bdcf80a0a65d5e7c26117071b3908e598ea27905455a724552d4c0c9c1a0"
+    }
+  },
+  "formalization": {
+    "original_source_revision": "8badbe471000b4e0f63d2e40b1ee784cb74c4556",
+    "original_evidence_revision": "3ac917835b35e7b1d4b66f758f1b2a37a7f78826",
+    "source_subdirectory": "formalized-sparse-mm",
+    "original_paper_sha256": "e9b186280f854e69a01b63e12f75ae0a4e4e9d22b3c06f216746b83a206fea5e",
+    "original_proof_files_sha256": {
+      "SparseMM/AggregationLower.lean": "04aa91a81a6e667cfd60024f19e21ae313a9ef4b35b480416899e5409647c807",
+      "SparseMM/AggregationModel.lean": "b677377cafc8d0d5044e4e76bd54b39a6aaf2b678d63ac0eac418a2d618ba77c",
+      "SparseMM/Algebra.lean": "f27fc1f9bdbc9f3ab3dffebfdaadd3f4db3865b89b3b445a61f177bbc54e87f8",
+      "SparseMM/Balancing.lean": "8fd2ea0b310cb9233a1a13da96e64c6f7a1d9579e0b95bc79adf7cccd44918e7",
+      "SparseMM/BooleanAggregation.lean": "8359383f1fa14a5b0ebb82cf7c78926f3be8de76f3da2cc60922467c60ea54dc",
+      "SparseMM/BooleanDegree.lean": "7dfbe8ed59ab0846a92e4987663118dd48ff244def351684c76c2e3e84f31eda",
+      "SparseMM/BroadcastLower.lean": "e81114bccff661f483d56a89963c68135f036de52483a424d15b3cc6da6858de",
+      "SparseMM/Clustering.lean": "19283aac408e59234e37e1c25adc243d31edea4d98924d96625ffae3f596de30",
+      "SparseMM/ClusterLoads.lean": "3ac996913847d59d5d57cd8627eadb91ae4898bd84a266c4bcc6ad6973527e07",
+      "SparseMM/Complexity.lean": "0964ba3a1cebb226cab28c2946a2fe3556e703fb486e27f84b67ea2c337e73ac",
+      "SparseMM/Computation.lean": "81a2b8178dfa3e94c35c8885bb75c6c8258b16dd37c53a62a97542f782513f39",
+      "SparseMM/Counting.lean": "78faa14ef0d1ee5eacd0b5f845c411b44aa272c8fde86763fa06d3680b42857e",
+      "SparseMM/ExactRouting.lean": "d55f283714102b2e37325ea2c71055d051e068059625265c2898bb6c6166f80b",
+      "SparseMM/HelperPlan.lean": "98e54ca974d5c905109c687dae3211eef8fd58bffa87ba4b8abc93413f67a496",
+      "SparseMM/InputGather.lean": "65121a82b13a59ea79d1268ed3b26bcb9d3025f1b61354c3a0136161cf54bbdc",
+      "SparseMM/LocalPipeline.lean": "f5257836e7df41913f5b5edcbdb188832c2c54051c569681171c97bc879dbd63",
+      "SparseMM/Main.lean": "e35fc070f785a87a2ee22acba291667c4b5690deb828a47404a469b55289beed",
+      "SparseMM/Masks.lean": "05c85decabe509e4985a4ac780995a7e5397bc7600b01545c2ab0ce23d8061e7",
+      "SparseMM/Model.lean": "b45a1594364afea838a73c31cec95b0a840fb43b15a2d1621e4f5bf2972e9a1e",
+      "SparseMM/Multicast.lean": "2a253d0b620eebfd48842c0881abf14f81151aa67fa1169598e83c451289c88c",
+      "SparseMM/OutputAssignment.lean": "f358b23a2ba1a8e62cca95f1746e867efa914b4227acb2e6ac4dea3dfe736adc",
+      "SparseMM/OutputPlan.lean": "9a0ba6d1d3f6437cc48720679353d971a358352d098f062532edbb9ccbdbc41a",
+      "SparseMM/PartialDelivery.lean": "13acf90f0bf2e4d59f08d87badd495856e0ed3caa01c28e7c42d0d5ba635b5c1",
+      "SparseMM/PermutationBalancing.lean": "99e68b52e12ce8d5201728708e6cd35c79ea5aca2129554615871a4e452c1317",
+      "SparseMM/PipelinedBroadcast.lean": "4c13cda530e2dbedcb8c19db4bc5912d6373df33e10f90d010fd8b775a7a39fc",
+      "SparseMM/Plan.lean": "6951b386a061a70c64c217f8e8bab18bca3da28d5057095447eed8eb9eefa6d9",
+      "SparseMM/Program.lean": "11861c1438a4560ef9f3f70a2f18f011fa40a9c646083cdd922a93f499400002",
+      "SparseMM/ResidualDelivery.lean": "030858ccf583406a9170a61cdc54f9d6f7402bb997c8351324e24380596346bf",
+      "SparseMM/Rounding.lean": "5617430e3b95830b17b04c2dd7ceeb10c2c62f41d6a35a1f9f9b75b5fb2467d3",
+      "SparseMM/Routing.lean": "7fe73a20d963d97dfe4ece4ddc22a2079f90918de2b549e9df3a9f5dd5fbd268",
+      "SparseMM/Signatures.lean": "937935c5cf598a3a2120ceb9c7aaa046098485a62ad51446aa4031277a90d02a",
+      "SparseMM/ToolboxComplexity.lean": "78dee8708c7122dc32379a9f0a5dda54e6440e9075df28dfc2fc511740aec47d",
+      "SparseMM/Wire.lean": "1e8a4effeb9180b474e052e0327dc8d448ad0032c82ffba1e2f65d12c1d953ec"
+    },
+    "note": "The current manuscript was re-audited. Earlier verification is provenance only; this standalone package requires its own fresh checks."
+  }
+}

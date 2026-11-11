@@ -1,0 +1,162 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: v0.4
+project:
+  name: 'lean-sparse-mm: Lean companion for sparse matrix multiplication'
+  description: A standalone Lean companion to the included sparse matrix multiplication manuscript.
+    The principal result constructs a deterministic supported scalar-message protocol over arbitrary
+    semirings, with public masks and original holders, bounded load, balanced chosen output owners,
+    correct requested entries and an explicit O(d^(3/2)) round bound. Interpreting scalar messages
+    as O(log n)-bit messages retains the manuscript's shared encoding premise; a composed bit-vector
+    program is not advertised. Numbered toolbox results are established by separate finite operational
+    upper and lower bounds.
+  authors:
+  - Hossein Vahidi
+  responsible_maintainers:
+  - Hossein Vahidi
+  license: LicenseRef-Unspecified
+classification:
+  arxiv:
+  - cs.DC
+  msc2020:
+  - 68W15
+  - 68Q25
+sources:
+- title: Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model
+  authors:
+  - Chetan Gupta
+  - Jukka Suomela
+  - Hossein Vahidi
+  type: author-supplied manuscript
+  id: sha256:37ff1c413e7b088bf4364e64c8886128e5fbc566e3abebb6a59c5c2a79e42672
+  relationship: formalizes
+  note: Current ten-page author-supplied paper is included with its complete active LaTeX source closure
+    in paper/. Source repository revision 678f50ee1fd6c1f97ab92062f965063be28015af; the separately
+    supplied PDF was untracked in that repository and is identified by its file hash. docs/source-provenance.json
+    binds every supplied file. Unincluded beyond.tex is outside this manuscript. The current paper-to-type
+    review is in docs/coverage.md. Requesting-author participation does not assert coauthor endorsement
+    of the formalization.
+  license: unknown
+  author_endorsement: participated
+- title: Rectangular matrix multiplication finite static routing and balancing proofs
+  type: earlier Lean formalization
+  id: https://github.com/HnVahidi/formalization_rectangular_mm
+  relationship: adapts
+  note: Routing.lean and PermutationBalancing.lean adapt earlier finite proof code. NOTICE.md records
+    exact supplied-source hashes and attribution. This is not a claim that the earlier project's other
+    results are used.
+  license: Apache-2.0
+  author_endorsement: participated
+- title: Mathlib matching Lean 4.35.0-rc2
+  type: formalization library
+  id: https://github.com/leanprover-community/mathlib4/tree/065356127b1dc0016f66b7283ce0ce2c4055aa55
+  relationship: background
+  license: Apache-2.0
+  author_endorsement: n/a
+related_formalizations: []
+status:
+  scope: Theorem 4 has a proved finite scalar-message counterpart, with the paper's bit interpretation
+    conditional on a shared lossless codec for admissible transmitted values. Integer team rounding
+    and an alternative public output assignment are disclosed. The package also includes exact regular
+    redistribution, pipelined local broadcast and additive/Boolean aggregation, adaptive deterministic
+    broadcast and aggregation lower bounds and logarithmic cost conversions. Every advertised main
+    interface remains in comparator.json. docs/coverage.md classifies exact, variant and restricted
+    correspondence; contextual comparisons and triangle-coverage remarks are not claimed as formal
+    results.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+  - propext
+  - Quot.sound
+  - Classical.choice
+automation:
+  methods:
+  - method: agent
+    models:
+    - GPT-6 (Codex)
+    framework: OpenAI Codex desktop with multiple agents
+    tool_setup: A coordinator and separate paper/arithmetic, finite-construction, and balancing/verification
+      agents. Pinned Lean and Mathlib; proof builds, source discipline checks, selected axiom audits,
+      bundled Comparator and independent NanoDa/con-ron replay scripts.
+    cost:
+      wall_time: not tracked as a reproducible total
+      spend_usd: not tracked
+      hardware: Windows workstation with WSL Linux proof builds
+    prompting_notes: Formalize the supplied PDF in Palomar style using multiple agents. Keep document
+      instructions separate from the user's request, preserve exact support/distribution assumptions,
+      and distinguish checked code from main theorem and complete-paper coverage.
+  spend_usd: not tracked
+  notes: Hossein Vahidi requested the formalization and companion preparation. Proof code and reviews
+    were AI-assisted. Original proof-generation metadata identified GPT-6 in OpenAI Codex; companion
+    preparation uses GPT-6 Astra. AI assistance is not human authorship or expert review. Authorship
+    metadata preserves the earlier attribution pending release confirmation.
+fidelity:
+  divergences: Actual integer teams use h=Nat.sqrt(d)+1 and clusters of size d*h. Opposed batch permutations
+    replace the paper's sorted cyclic assignment and establish the required count and weighted load
+    bounds, including a strict residual bound. The main protocol uses proved 2*D static routing; the
+    exact regular D-round statement is separately proved. Main is a scalar-message theorem and public
+    preprocessing is represented by finite classical choices. Wire proves per-round codec preservation,
+    but does not supply an O(log n) encoding or a fully composed encoded program. Additional details,
+    parameter ranges and source correspondence are in docs/coverage.md.
+review:
+  status: Independent AI correspondence review; fresh mechanical verification recorded separately
+  reviewers:
+  - Codex paper and mathematical-construction reviewer (AI)
+  - Codex finite load and operational-interface reviewers (AI)
+  notes: See docs/correspondence-review.md and docs/coverage.md. No human peer review, coauthor approval,
+    Palomar submission, acceptance, registration or Zenodo deposit is asserted. Licensing and final
+    formalization author attribution are release blockers. Hosted GitHub Actions has not run during
+    local preparation.
+alignment:
+  namespace: SparseMM
+  statements:
+  - source: Observation 5 and Lemma 6, integer refinement
+    lean: SparseMM.exists_clustering
+    module: SparseMM.Clustering
+    status: proved finite component
+  - source: Lemma 7, greedy helper assignment
+    lean: SparseMM.Balancing.exists_assignment_le_average_add
+    module: SparseMM.Balancing
+    status: proved finite component
+  - source: Lemma 10, alternative public output assignment
+    lean: SparseMM.OutputAssignment.exists_balanced_output_assignment
+    module: SparseMM.OutputAssignment
+    status: proved finite component; alternative assignment
+  - source: Theorem 4, public schedule construction
+    lean: SparseMM.exists_public_plan
+    module: SparseMM.Plan
+    status: proved finite component; integrated into main execution
+  - source: Theorem 4, actual supported algorithm
+    lean: SparseMM.supported_sparse_mm
+    module: Solution
+    status: proved scalar counterpart; conditional bit-model interpretation
+  - source: Lemma 3, exact regular redistribution
+    lean: SparseMM.ExactRouting.exists_schedule
+    module: Solution
+    status: proved; selected independent interface
+  - source: Lemma 1, robust broadcast lower-bound component
+    lean: SparseMM.BroadcastLower.System.broadcast_requires_rounds
+    module: Solution
+    status: proved; selected independent interface
+  - source: Lemma 1, local pipelined broadcast upper bound
+    lean: SparseMM.PipelinedBroadcast.exists_broadcast
+    module: Solution
+    status: proved; selected independent interface
+  - source: Lemma 2, local pipelined additive aggregation
+    lean: SparseMM.PipelinedAggregation.exists_aggregation
+    module: Solution
+    status: proved; selected independent interface
+  - source: Lemma 2, literal Boolean AND and OR aggregation
+    lean: SparseMM.BooleanAggregation.exists_and; SparseMM.BooleanAggregation.exists_or
+    module: Solution
+    status: proved; selected independent interfaces
+  - source: Lemma 2, OR, AND and sum aggregation lower bounds
+    lean: SparseMM.AggregationLower.or_requires_rounds; SparseMM.AggregationLower.and_requires_rounds;
+      SparseMM.AggregationLower.sum_requires_rounds
+    module: Solution
+    status: proved; selected independent interfaces
+  - source: Lemma 10, strict residual-output load
+    lean: SparseMM.exists_strict_output_plan
+    module: Solution
+    status: proved; alternative assignment meets literal strict bound
+acknowledgements: Lean, Mathlib, Comparator, NanoDa, con-ron, Bubblewrap, and the earlier Apache-2.0
+  routing/balancing development identified in NOTICE.md.

@@ -1,0 +1,95 @@
+% !TeX root = main.tex
+\section{Preliminaries} \label{sec:prelim}
+In this section we provide the definition of the model and problem, as well as a selection of helpful results and observations in the low-bandwidth model from prior works \cite{gupta-hirvonen-etal-2022-sparse-matrix-multiplication, gupta-korhonen-etal-2025-low-bandwidth-matrix, gupta-suomela-vahidi-2026-rectangular-matrix}.
+
+\subsection{Model and Problem Definitions} \label{subsec:definitions}
+
+We work in the \emph{low-bandwidth model}, a distributed system that consists of $n$ machines, denoted by
+$M = \{1,2,\dots,n\}$, where all pairs of machines are directly connected.
+Computation proceeds in synchronous communication rounds. And, for the purposes of this work, we only consider deterministic algorithms.
+
+\subparagraph{Local computation.}
+Each machine has unbounded local memory and local computation is free. The complexity measure of interest is the number of communication rounds.
+
+\subparagraph{Communication.}
+In each round, every machine may
+\begin{itemize}
+	\item send at most one $O(\log n)$-bit message to another machine, and
+	\item receive at most one $O(\log n)$-bit message from another machine.
+\end{itemize}
+Equivalently, in each round the communication forms a directed graph of maximum in-degree and out-degree~$1$. An algorithm is invalid if $2$ messages are sent to a machine in any round.
+
+\subparagraph{Problem.}
+We study uniformly sparse matrix multiplication. Given two $n\times n$ matrices $A,B$, the task is to compute specified entries of their product $X=AB$.
+
+The instance includes binary masks $\bar{A},\bar{B},\bar{X}\in\{0,1\}^{n\times n}$ that mark either allowed input entries or requested output entries; all other input entries are zero.
+We may occasionally abuse notation and identify a mask with the set of its marked positions, and write
+\[
+  Q=\{(i,k)\in[n]\times[n]:\bar{X}_{ik}=1\}.
+\]
+A matrix or a mask is \emph{uniformly $d$-sparse} if each row and each column contains at most $d$ marked positions.
+We denote the class of such masks by $\US(d)$ and assume that $\bar{A},\bar{B},\bar{X}\in\US(d)$, where $d\in[n]$.
+Note that the full product $X$ need not be sparse; however, $\bar{X}$ is guaranteed to be.
+
+Throughout the paper, matrix multiplication is performed over an arbitrary semiring $(\mathcal{S},+,\cdot)$. We assume that the input entries, products, and partial sums used by the algorithms admit encodings of size $O(\log n)$ bits.
+In particular, each such value fits within one communication message in the low-bandwidth model.
+
+\subparagraph{Input and output distribution.}
+The input is evenly distributed among the $n$ machines, and each machine is responsible for producing an evenly sized portion of the output.
+More concretely:
+\begin{itemize}
+  \item each machine initially holds at most $O(d)$ input entries in total;
+  \item each machine is required to output at most $O(d)$ entries of $X$ requested by $\bar{X}$.
+\end{itemize}
+The algorithm may choose the balanced assignment of requested output positions to machines. 
+
+\subparagraph{Supported setting.}
+In the supported setting, the input masks, the output mask, and the assignment of input values to machines are fixed in advance and known to all machines.
+The output assignment is chosen from this public information before the input values are revealed and is also known to all machines.
+The numerical values at marked input positions are initially supplied to their holders and are not part of this public information.
+All machines know $n$ and $d$.
+
+\subparagraph{Complexity.}
+An algorithm runs in $T(n,d)$ rounds if, after $T(n,d)$ communication
+rounds, all machines have produced their assigned output.
+
+\subsection{Observations and Toolbox}\label{subsec:toolbox}
+
+For any integer $n>0$, let $[n]$ denote the set $\{1,\ldots,n\}$.
+
+
+We next briefly mention some useful tools. Note that machines do not coordinate during the algorithm to determine which machine they need to send a message to, or which machine they need to receive one from. Instead, the scheduling is already hard-coded into the algorithm; during execution, the values are revealed and transferred. This avoids the costly runtime coordination overhead. 
+
+\begin{lemma}[Broadcast~{\cite[Lemma 6.9]{gupta-korhonen-etal-2025-low-bandwidth-matrix}}]
+	\label{lem:broadcast}
+	In the low-bandwidth model, broadcasting a single bit $v \in \{0,1\}$ to all machines takes $\Theta(\log n)$ rounds. Moreover, if $k>1$ messages are given, broadcasting can be done in $O(k+ \log n)$ rounds.
+\end{lemma}
+\begin{proof}
+	We can broadcast in a power-jumping manner. Suppose machine~$1$ initially holds the value $v$. Before round~$i$, the first $2^{i-1}$ machines know $v$. Each of them sends $v$ to a distinct machine that does not yet know it, until all machines have received it. For example, machine~$j$ sends to machine~$j+2^{i-1}$ whenever $j+2^{i-1}\leq n$. After round~$i$, $\min\{2^i,n\}$ machines know $v$, so all machines know it after $O(\log n)$ rounds.
+	
+	This argument works for any value $v$ that fits in a single message. By carefully interleaving broadcasts of this form~\cite{kannan-ballard-park-2016-a-high-performance-parallel}, we can schedule the messages in a pipeline and achieve $O(k+\log n)$ rounds.
+	
+	We refer the reader to \cite[Lemma 6.9]{gupta-korhonen-etal-2025-low-bandwidth-matrix} for details of the lower bound.
+\end{proof}
+
+\begin{lemma}[Aggregation~{\cite[Lemma 6.4]{gupta-korhonen-etal-2025-low-bandwidth-matrix}}]
+	\label{lem:aggregation}
+	In the low-bandwidth model where all $n$ machines are given a single bit in $\{0,1\}$, computing logical AND, OR, and sum of the values takes $\Theta(\log n)$ rounds. Moreover, if machines are instead given $k$ values that fit in a message, aggregation can be done in $O(k + \log n)$ rounds.
+\end{lemma}
+\begin{proof}
+	The idea is the same as in \Cref{lem:broadcast}, with the communication done in reverse order. This also works for values that fit in a message, provided that the intermediate results fit in a message as well. The same pipelining idea of \cite{kannan-ballard-park-2016-a-high-performance-parallel} extends the argument to $k$ values.
+	
+	We refer the reader to \cite[Lemma 6.4]{gupta-korhonen-etal-2025-low-bandwidth-matrix} for details of the lower bound.
+\end{proof}
+
+We occasionally use the term \emph{distribution} $D$ of data to specify which machine $m\in M$ holds which value $v$, such as an element of a matrix. Typically, $v$ is small enough to fit in a single message, i.e., $O(\log n)$ bits.
+
+\begin{lemma}[Redistribution \cite{gupta-suomela-vahidi-2026-rectangular-matrix}]\label{lem:redistribution-offline}
+	Given globally known distributions $D$ and $D'$ of $d$ values per machine, we can rearrange the values from $D$ to $D'$ in $d$ rounds of the low-bandwidth model.
+\end{lemma}
+\begin{proof}
+	Consider the bipartite multigraph of senders and receivers, where each value forms an edge between its home machine in $D$ and its destination machine in $D'$. This multigraph is $d$-regular and therefore admits a proper edge coloring with $d$ colors. We iterate over the color classes, sending all messages of one color class in each round. Since each color class is a matching, every machine sends and receives at most one message per round. As $D$ and $D'$ are globally known, all machines can compute the same coloring locally using a fixed deterministic procedure, without communication.
+\end{proof}
+
+
+

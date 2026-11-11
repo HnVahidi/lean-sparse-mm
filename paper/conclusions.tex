@@ -1,0 +1,10 @@
+% !TeX root = main.tex
+\section{Conclusions} \label{sec:conclusions}
+We studied sparse matrix multiplication in the low-bandwidth model and designed an $O(d^{3/2})$-round algorithm for uniformly sparse matrices in the supported setting. Two open problems remain for future work.
+
+It is not known whether support can be removed entirely while preserving this round complexity. However, we found that an equally fast algorithm is possible when the support reveals at least one edge of each product triangle $A_{ij}B_{jk}$ for which the output position $X_{ik}$ is requested.
+
+Another open problem is whether the exponent $3/2$ can be improved. When $d=\Theta(n)$, we expect bounds closer to the $O(d^{4/3})$ bound of dense matrix multiplication~\cite{censor-hillel-kaski-etal-2019-algebraic-methods-in-the}.
+
+
+

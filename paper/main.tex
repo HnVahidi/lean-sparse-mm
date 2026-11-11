@@ -1,0 +1,101 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\setlength{\emergencystretch}{1em}
+\usepackage{amsmath,mathtools}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{tikz}
+\usepackage{subcaption}
+\usepackage{cite}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{orcidlink}
+\usepackage[capitalize,nameinlink,noabbrev]{cleveref}
+\usetikzlibrary{patterns}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{definition}[theorem]{Definition}
+
+\newcommand{\US}{\ensuremath{\mathsf{US}}}
+\newcommand{\FS}{\ensuremath{\mathsf{FS}}}
+\newcommand{\IS}{\ensuremath{\mathsf{IS}}}
+\newcommand{\OS}{\ensuremath{\mathsf{OS}}}
+\newcommand{\NS}{\ensuremath{\mathsf{NS}}}
+\newcommand{\machines}{\ensuremath{\mathcal{M}}}
+\newcommand{\clusters}{\ensuremath{\mathcal{C}}}
+\newcommand{\upbound}{\ensuremath{d^{3/2}}}
+
+
+\title{Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model}
+
+\author{
+    Chetan Gupta\,\orcidlink{0000-0002-0727-160X}\\
+    IIT Roorkee, Roorkee, India\\
+    \texttt{chetan.gupta@cs.iitr.ac.in}
+    \and
+    Jukka Suomela\,\orcidlink{0000-0001-6117-8089}\\
+    Aalto University, Helsinki, Finland\\
+    \texttt{jukka.suomela@aalto.fi}
+    \and
+    Hossein Vahidi\,\orcidlink{0000-0002-0040-1213}\\
+    Aalto University, Helsinki, Finland\\
+    \texttt{hossein.vahidi@aalto.fi}
+}
+\date{}
+\hypersetup{pdftitle={Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model},pdfauthor={Chetan Gupta, Jukka Suomela, Hossein Vahidi}}
+
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+	We study sparse matrix multiplication in the low-bandwidth model: 
+	$n$ computers multiply two $n\times n$ matrices, and each computer can send and receive one $O(\log n)$-bit message per round.
+	The input matrices are uniformly sparse, meaning that there are at most $d$ nonzero entries in each row and column, and the task is to compute a uniformly sparse part of their product.
+		
+	In prior work, Gupta et al.~(SPAA 2022) presented an $O(d^{1.907})$-round algorithm over fields for this problem when the sparsity structure is globally known in advance (this is referred to as the supported setting). The upper bound was later improved to $O(d^{1.832})$ rounds.
+	
+	In this work, we give a deterministic algorithm that solves this problem in $O(d^{3/2})$ rounds in the supported setting, improving the previous bounds over fields and semirings.
+		
+		
+	%We then ask how much of the support must be known for fast multiplication to remain possible.
+	%We introduce the \emph{triangle coverage} property: for each subproduct $A_{ij}B_{jk}$ that contributes to an output entry $X_{ik}$, the position of at least one of these three entries is publicly known.
+	%We give a deterministic algorithm that solves any instance of uniformly sparse matrix multiplication that runs in $O(d^{3/2})$ rounds, provided that the instance satisfies the triangle coverage property.
+		
+		
+		
+\end{abstract}
+
+
+
+\input{introduction}
+\input{preliminaries}
+\input{ub}
+%\input{beyond}
+\input{conclusions}
+
+\section*{AI disclosure}
+We used OpenAI Codex, including GPT-6 Astra, during the research
+and preparation of this manuscript.
+The tools assisted with algorithm design, its proof, identifying relevant
+literature, and revising text.
+The authors take full responsibility for the correctness and presentation of the results and for the accuracy of all references.
+
+
+\bibliographystyle{plainurl}
+\bibliography{da}
+
+
+\end{document}

@@ -1,0 +1,225 @@
+% !TeX root = main.tex
+\section{Introduction} \label{sec:intro}
+
+In the AI era, \emph{matrix multiplication} is arguably one of the most important computational primitives that we need to be able to solve efficiently in massive scale. Even modest improvements in the efficiency of practical matrix multiplication could potentially yield global energy savings that are measured not in watts or kilowatts but in power plants. Furthermore, modern LLM architectures have many opportunities for exploiting \emph{sparsity}, e.g.\ in the sparse attention layer.
+
+In this work we study the complexity of sparse matrix multiplication with massively parallel algorithms. We have multiple ``machines'' (an abstraction that can represent e.g.\ threads, warps, cores, processors, or computers as appropriate) that collaborate in solving the task. We assume that \emph{communication} is the key bottleneck; here communication refers to the exchange of information between the machines (and this can represent anything ranging from shared memory accesses to sending messages over a network between computing nodes). The key question we aim to answer is this:
+\begin{quote}
+How many communication steps are sufficient for the machines to collectively calculate $X = AB$?
+\end{quote}
+
+In the theory of distributed computing community, the theoretical framework that has traditionally been used for exploring such questions has been the \emph{congested clique} model \cite{censor-hillel-kaski-etal-2019-algebraic-methods-in-the}. The standard setting is as follows: we have $n$ machines; the task is to calculate $X = AB$ for matrices with $n \times n$ elements; initially each machine holds one row of $A$ and one row of $B$; and in the end each machine has to hold one row of $X$. In each communication round, each computer can send and receive $O(n)$ words (we will assume here that a word is large enough to hold a matrix element or index). It is known that for \emph{dense} matrices we can solve the task in $O(n^{1-2/\omega+\epsilon})$ rounds, where $\omega$ is the familiar matrix multiplication exponent; by plugging in the latest news $\omega \le 9/4$ \cite{openai-2026-an-upper-bound-of-9-4-for-the-matrix,amanov-van-den-berg-zuiddam-2026-multiplying-matrices-via-polynomials} we obtain $O(n^{1/9+\epsilon})$ rounds.
+
+However, when we start to study how much \emph{sparsity} helps, this model is a dead end. Even moderately sparse matrices can be multiplied in this model in $O(1)$ rounds, for boring reasons, as the number of words communicated per round is so large. In particular, the model is useless for comparing different sparse matrix multiplication algorithms, as it will only tell us that both of the candidate algorithms run in $O(1)$ rounds.
+
+A much more useful abstraction for studying how much sparsity helps is a low-bandwidth version of the same model (models of that spirit have been called e.g.\ node-capacitated clique or node-congested clique in the literature). The precise formalism used in recent work \cite{gupta-hirvonen-etal-2022-sparse-matrix-multiplication,gupta-korhonen-etal-2025-low-bandwidth-matrix} is this:
+\begin{itemize}
+  \item We have $n$ machines, and the task is to calculate $X = AB$ for $n \times n$ matrices.
+  \item The matrices $A$ and $B$ are uniformly sparse: there are at most $d$ nonzero elements per row and per column.
+  \item We only care about a uniformly sparse part of the product $X$: there are at most $d$ elements per each row and column that we need to calculate.
+  \item Initially each machine holds one row of each input matrix, and in the end each machine has to hold one row of the result.
+  \item In each communication round, each computer can send and receive only $O(1)$ words.
+  \item The sparsity structure is known in advance (supported model), but the values of the matrix elements are only known at runtime.
+\end{itemize}
+In this formalism, we have conveniently a single parameter $d$ that captures how sparse a product we are computing. In this setting we can solve the task in $O(d^2)$ rounds with a trivial brute-force algorithm, and $\Omega(d)$ is the trivial information-theoretic lower bound. The key question is how much better we can do?
+
+Over fields, prior work managed to push it first to $O(d^{1.907})$ rounds \cite{gupta-hirvonen-etal-2022-sparse-matrix-multiplication} and then to $O(d^{1.832})$ rounds \cite{gupta-korhonen-etal-2025-low-bandwidth-matrix}. We could slightly improve the exponent further by using the latest value of $\omega$, which gives a $O(d^{1.82223})$-round algorithm, but it will become even less practical then. There are fundamental barriers that prevent major advances following the general strategy from \cite{gupta-hirvonen-etal-2022-sparse-matrix-multiplication,gupta-korhonen-etal-2025-low-bandwidth-matrix}.
+
+But today we have fortunately access to the problem-solving and algorithm-design skills of modern LLMs. In this work we present an AI-discovered simple and elegant algorithm that solves the problem in \textbf{\boldmath $O(d^{1.5})$ rounds}.
+
+Notably, the algorithm does not use any machinery from fast centralized matrix multiplication algorithms, its complexity does not depend on $\omega$, it solves matrix multiplication over arbitrary semirings, and it is arguably \textbf{practical}.
+
+In this work we do our best of explaining the AI-discovered algorithm to our fellow humans. While the algorithm design was done by AI (OpenAI GPT-6 primarily), this work is written by humans, for humans.
+
+
+\paragraph{Open questions for future work.}
+
+Similar to prior work \cite{gupta-hirvonen-etal-2022-sparse-matrix-multiplication,gupta-korhonen-etal-2025-low-bandwidth-matrix}, our new algorithm assumes that the sparsity structure is known in advance, i.e., we have a \emph{support}. While we now know that \emph{partial} support suffices, a key open question is whether the support can be removed \emph{entirely} while
+retaining $O(d^{3/2})$ rounds for $d=n^\alpha$ with fixed $0<\alpha<2/3$?
+Our algorithm uses public masks to choose clusters and balance communication
+before execution; without support, these decisions must be made from
+distributed information while respecting both send and receive limits.
+An intermediate setting is \emph{triangle coverage}, where every potential
+product $A_{ij}B_{jk}$ for a requested entry $X_{ik}$ has at least one public
+coordinate among $(i,j)$, $(j,k)$, and $(i,k)$.
+
+The new round complexity $O(d^{3/2})$ is certainly more elegant and natural than the prior upper bounds. It would be tempting to conjecture that $O(d^{3/2})$ is the right complexity for this problem, but there is no lower bound (even conditional lower bound). Hence a key open question is if the exponent $3/2$ can be reduced even with full support?
+Improving this term is especially relevant for $d<n^{2/3}$: for larger $d$,
+the known $O(dn^{1/3})$ algorithm already matches or improves our bound.
+
+\paragraph{Overview of prior work and the new results.}
+\Cref{tab:us-full-support-bounds,fig:us-full-support-bounds} summarize
+the known bounds for uniformly sparse matrix multiplication with full
+support and a public input distribution. Here $\omega$ denotes the
+matrix multiplication exponent over the field in question. In the table, the dense matrix multiplication bound has been calculated using the latest result $\omega\le9/4$ \cite{openai-2026-an-upper-bound-of-9-4-for-the-matrix,amanov-van-den-berg-zuiddam-2026-multiplying-matrices-via-polynomials}, the corresponding bilinear algorithms~\cite{pass-2026-matrix-multiplication-from-polynomial-packings}, and the dense multiplication algorithm from \cite{censor-hillel-kaski-etal-2019-algebraic-methods-in-the}, resulting in the round complexity
+$O(n^{10/9+\varepsilon})$ for every fixed $\varepsilon>0$.
+
+
+
+\begin{table}[!ht]
+	\centering
+	\small
+	\setlength{\tabcolsep}{4pt}
+	\renewcommand{\arraystretch}{1.22}
+	\begin{tabular}{@{}lcc@{}}
+		\toprule
+		Result & Semirings & Fields \\
+		\midrule
+		Trivial & $O(d^2)$ & $O(d^2)$ \\
+		Dense multiplication~\cite{censor-hillel-kaski-etal-2019-algebraic-methods-in-the}
+		& $O(n^{4/3})$ & $O(n^{10/9+\varepsilon})$ \\
+		Sparse multiplication~\cite{censor-hillel-dory-etal-2021-fast-approximate-shortest}
+		& $O(dn^{1/3})$ & $O(dn^{1/3})$ \\
+		Gupta et al.\ (2022)~\cite{gupta-hirvonen-etal-2022-sparse-matrix-multiplication}
+		& $O(d^{1.927})$ & $O(d^{1.907})$ \\
+		Gupta et al.\ (2025)~\cite{gupta-korhonen-etal-2025-low-bandwidth-matrix}
+		& $O(d^{1.867})$ & $O(d^{1.832})$ \\
+		\textbf{This work} & $\boldsymbol{O(d^{1.5})}$ & $\boldsymbol{O(d^{1.5})}$ \\
+		\midrule
+		Best combined bound
+		& $O(\min\{d^{1.5},dn^{1/3}\})$
+		& $O(\min\{d^{1.5},dn^{1/3},n^{10/9+\varepsilon}\})$ \\
+		\bottomrule
+	\end{tabular}
+	\caption{Summary of deterministic upper bounds for uniformly $d$-sparse matrix multiplication with support. The final row takes the best available bound in all regimes.}
+	\label{tab:us-full-support-bounds}
+\end{table}
+
+\begin{figure}[!ht]
+	\centering
+	\begingroup
+	
+	% Bounds and their transition points.
+	\def\omegaBound{9/4}
+	\def\currentPower{1.5}
+	\def\currentSwitchLabel{\frac23}
+	\def\oldSemiringPower{1.867}
+	\def\oldFieldPower{1.832}
+	\pgfmathsetmacro{\currentSwitch}{1/(3*(\currentPower-1))}
+	\pgfmathsetmacro{\oldSemiringSwitch}{1/(3*(\oldSemiringPower-1))}
+	\pgfmathsetmacro{\oldFieldSwitch}{1/(3*(\oldFieldPower-1))}
+	\pgfmathsetmacro{\densePower}{2-2/(\omegaBound)}
+	\pgfmathsetmacro{\denseSwitch}{\densePower-1/3}
+	
+	% Fill shades: darker orange is unconditional; light orange is conditional.
+	\definecolor{boundblue}{HTML}{0088CC}
+	\definecolor{boundorange}{HTML}{F26924}
+	\definecolor{resultpurple}{HTML}{7744A3}
+	\definecolor{conditionalorange}{HTML}{C65C16}
+	\colorlet{unconditionalfill}{boundorange!34}
+	\colorlet{conditionalfill}{boundorange!18}
+	
+	% Shared tick and axis formatting. Optional argument shifts a tick label.
+	\newcommand{\DrawXTick}[3][0pt]{%
+		\draw[thin] (#2,0) -- (#2,-.018)
+		node[below=3pt,xshift=#1,font=\small] {$#3$};
+	}
+	\newcommand{\DrawBoundAxes}[1]{%
+		\node[font=\normalsize] at (.5,1.77) {#1};
+		\draw[axis] (0,0) -- (1.055,0);
+		\draw[axis] (0,0) -- (0,1.56);
+		\node[anchor=west,font=\small] at (0,1.63) {$T=n^y$};
+		\node[anchor=north east,font=\small] at (1.055,-.22) {$d=n^x$};
+		\DrawXTick{0}{0}
+		\DrawXTick[-2pt]{\currentSwitch}{\currentSwitchLabel}
+		\DrawXTick{1}{1}
+		\foreach \y/\lab in {{1/3}/{\frac13},.5/{\frac12},1/1,{4/3}/{\frac43},1.5/{\frac32}}
+		\draw[thin] (0,\y) -- (-.013,\y)
+		node[left=2pt,font=\small] {$\lab$};
+	}
+	
+	\resizebox{\linewidth}{!}{%
+		\begin{tikzpicture}[x=6.2cm,y=4cm,
+			axis/.style={thick,->},
+			guide/.style={black!30,thin,densely dashed},
+			ours/.style={resultpurple,line width=2.1pt,solid},
+			prior sparse/.style={black!80,line width=.9pt,dashed},
+			cube/.style={black!65,line width=.9pt,dashed},
+			dense/.style={black!55,line width=.8pt,densely dashed},
+			unconditional/.style={boundorange,line width=1pt},
+			conditional/.style={conditionalorange,line width=1pt,dashed},
+			curve label/.style={font=\normalsize,sloped},
+			lower label/.style={font=\small,sloped,below=3pt}]
+			
+			% (a) Semirings.
+			\begin{scope}
+				\coordinate (Origin) at (0,0);
+				\coordinate (OldJoin) at (\oldSemiringSwitch,{\oldSemiringSwitch+1/3});
+				\coordinate (NewJoin) at (\currentSwitch,{\currentSwitch+1/3});
+				\coordinate (CubeStart) at (0,1/3);
+				\coordinate (CubeEnd) at (1,4/3);
+				
+				% Blue follows the best envelope; purple marks our improvement.
+				\fill[boundblue!25]
+				(Origin) -- (NewJoin) -- (CubeEnd) -- (1,1.5) -- (0,1.5) -- cycle;
+				\fill[resultpurple!30] (Origin) -- (OldJoin) -- (NewJoin) -- cycle;
+				\fill[unconditionalfill] (Origin) -- (1,1) -- (1,0) -- cycle;
+				\fill[conditionalfill] (.4,.4) -- (CubeEnd) -- (1,1) -- cycle;
+				\draw[guide] (\currentSwitch,0) -- (NewJoin);
+				
+				% Prior algorithms, including the full line y=x+1/3.
+				\draw[prior sparse] (Origin) --
+				node[curve label,pos=.45,above=4pt,fill=boundblue!25,inner sep=1pt] {$d^{\oldSemiringPower}$}
+				(OldJoin);
+				\draw[cube] (CubeStart) --
+				node[curve label,pos=.80,above=4pt,fill=boundblue!25,inner sep=1pt] {$dn^{1/3}$} (CubeEnd);
+				\draw[ours] (Origin) --
+				node[curve label,pos=.67,below=3pt,fill=white,inner sep=1pt] {$\boldsymbol{d^{\currentPower}}$}
+				(NewJoin);
+				\draw[unconditional] (Origin) --
+				node[lower label,pos=.68,text=boundorange] {$\widetilde{\Omega}(d)$} (1,1);
+				\draw[conditional] (.4,.4) --
+				node[lower label,pos=.72,text=conditionalorange,inner sep=1pt]
+				{$\widetilde{\Omega}(d^{14/9}/n^{2/9})$}
+				(CubeEnd);
+				
+				\DrawBoundAxes{(a) Semirings}
+				\DrawXTick{.4}{\frac25}
+			\end{scope}
+			
+			% (b) Fields. The dense plateau is a prior bound, not our contribution.
+			\begin{scope}[xshift=8.4cm]
+				\coordinate (Origin) at (0,0);
+				\coordinate (OldJoin) at (\oldFieldSwitch,{\oldFieldSwitch+1/3});
+				\coordinate (NewJoin) at (\currentSwitch,{\currentSwitch+1/3});
+				\coordinate (DenseJoin) at (\denseSwitch,\densePower);
+				\coordinate (RightEnd) at (1,\densePower);
+				\coordinate (CubeStart) at (0,1/3);
+				\coordinate (CubeEnd) at (1,4/3);
+				
+				\fill[boundblue!25]
+				(Origin) -- (NewJoin) -- (DenseJoin) -- (RightEnd) --
+				(1,1.5) -- (0,1.5) -- cycle;
+				\fill[resultpurple!30] (Origin) -- (OldJoin) -- (NewJoin) -- cycle;
+				\fill[unconditionalfill] (Origin) -- (1,1) -- (1,0) -- cycle;
+				\draw[guide] (\currentSwitch,0) -- (NewJoin);
+				\draw[guide] (\denseSwitch,0) -- (DenseJoin);
+				\draw[guide] (0,\densePower) -- (RightEnd);
+				
+				\draw[prior sparse] (Origin) --
+				node[curve label,pos=.45,above=4pt,fill=boundblue!25,inner sep=1pt] {$d^{\oldFieldPower}$}
+				(OldJoin);
+				\draw[cube] (CubeStart) --
+				node[curve label,pos=.52,above=4pt,fill=boundblue!25,inner sep=1pt] {$dn^{1/3}$} (CubeEnd);
+				\draw[ours] (Origin) --
+				node[curve label,pos=.67,below=3pt,fill=white,inner sep=1pt] {$\boldsymbol{d^{\currentPower}}$}
+				(NewJoin);
+				\draw[dense] (DenseJoin) --
+				node[font=\small,pos=.45,below=3pt,text=black!75,fill=white,inner sep=1pt]
+				{$n^{2-2/\omega}$} (RightEnd);
+				\draw[unconditional] (Origin) --
+				node[lower label,pos=.68,text=boundorange] {$\widetilde{\Omega}(d)$} (1,1);
+				
+				\DrawBoundAxes{(b) Fields}
+				\DrawXTick[2pt]{\denseSwitch}{\frac53-\frac2\omega}
+				\draw[thin] (0,\densePower) -- (-.013,\densePower)
+				node[left=2pt,yshift=2pt,font=\scriptsize] {$2-\frac2\omega$};
+			\end{scope}
+		\end{tikzpicture}%
+	}
+	\endgroup
+	\caption{Purple region highlights our improvement. Dashed lines are prior algorithms, whose achievable region is blue.
+		Orange lines are lower bound results from \cite{gupta-korhonen-etal-2025-low-bandwidth-matrix}. Results are summarized in \Cref{tab:us-full-support-bounds}. Logarithmic factors are suppressed. For field results we use $\omega\le9/4$.}
+	\label{fig:us-full-support-bounds}
+\end{figure}
+
