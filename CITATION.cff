@@ -52,5 +52,8 @@ references:
     the paper under its perpetual, non-exclusive licence. Version 1.0.0 archived the earlier manuscript draft.
 license: Apache-2.0
 version: 1.0.1
+date-released: '2026-11-18'
+commit: 136a0bb212e6582d4e18db2f1daeeef962b900ed
+doi: 10.5281/zenodo.24353759
 repository-code: https://github.com/HnVahidi/lean-sparse-mm
 url: https://github.com/HnVahidi/lean-sparse-mm

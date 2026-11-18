@@ -17,6 +17,7 @@ project:
   - Hossein Vahidi
   license: Apache-2.0
   version: 1.0.1
+  doi: 10.5281/zenodo.24353759
   repository: https://github.com/HnVahidi/lean-sparse-mm
 classification:
   arxiv:

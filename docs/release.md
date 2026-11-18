@@ -6,6 +6,12 @@
 - The manuscript files in `paper/` retain the authors' copyright and are governed by the separate rights notice. [Manuscript rights](../paper/LICENSE)
 - The formalization authors are Chetan Gupta, Jukka Suomela and Hossein Vahidi, in manuscript order. Hossein Vahidi maintains the repository. [Formalization and AI disclosure](../formalization.yaml)
 
+## Version 1.0.1
+
+[GitHub release](https://github.com/HnVahidi/lean-sparse-mm/releases/tag/v1.0.1) · [Zenodo DOI: 10.5281/zenodo.24353759](https://doi.org/10.5281/zenodo.24353759)
+
+Released on 18 November 2026. This version includes the arXiv manuscript and revised documentation. The Lean statements and proofs are unchanged. [Commit 136a0bb](https://github.com/HnVahidi/lean-sparse-mm/commit/136a0bb212e6582d4e18db2f1daeeef962b900ed) passed [full verification](https://github.com/HnVahidi/lean-sparse-mm/actions/runs/44391639578).
+
 ## Version 1.0.0
 
 GitHub released the verified source and Zenodo archived it on 11 November 2026.
@@ -30,7 +36,7 @@ The release proves the scalar-message theorem with the paper's shared codec
 premise for its bit interpretation. The coverage audit records the finite public
 choices and the rounding and output-assignment variants. [Coverage audit](coverage.md)
 
-## Citation
+## Citation for version 1.0.0
 
 > Chetan Gupta, Jukka Suomela, and Hossein Vahidi. (2026). *lean-sparse-mm: Lean companion for sparse matrix multiplication* (Version 1.0.0) [Software]. Zenodo. [10.5281/zenodo.24127515](https://doi.org/10.5281/zenodo.24127515)
 
