@@ -36,7 +36,8 @@ choices and the rounding and output-assignment variants. [Coverage audit](covera
 
 Use the version DOI for the exact snapshot. The concept DOI identifies the
 collection of versions. Cite the manuscript separately for its mathematical
-results. Record its arXiv identifier and licence once issued.
+results: [arXiv:2611.15201](https://arxiv.org/abs/2611.15201). The arXiv PDF was added to the
+working repository after v1.0.0; that fixed archive still contains the earlier manuscript draft.
 [Zenodo versioning guide](https://zenodo.org/help/versioning)
 
 ## Future versions

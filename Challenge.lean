@@ -17,7 +17,7 @@ public import Mathlib.Algebra.BigOperators.Ring.Finset
 
 Source: Gupta, Suomela, and Vahidi, *Sparse Matrix Multiplication Exponent 1.5
 in the Low-bandwidth Model*, supplied 10-page PDF, SHA-256
-37ff1c413e7b088bf4364e64c8886128e5fbc566e3abebb6a59c5c2a79e42672.
+ac738917953df4bed957f736a4a1cc811d93eaf7d07de28080d0b4bff7b28f36.
 
 Theorem 4 is encoded as one public local-state distributed program, chosen
 before numerical matrices, correct at its balanced output holders. Every

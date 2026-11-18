@@ -1,0 +1,7 @@
+<p>A Lean 4 formalization of <em>Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model</em> by Chetan Gupta, Jukka Suomela, and Hossein Vahidi.</p>
+<p>Paper: <a href="https://arxiv.org/abs/2611.15201">arXiv:2611.15201</a></p>
+<p>The code and project documentation are licensed under Apache-2.0. The manuscript files in paper/ are excluded; see paper/LICENSE.</p>
+<p><strong>Paper abstract</strong></p>
+<p>We study sparse matrix multiplication in the low-bandwidth model: n computers multiply two n &#215; n matrices, and each computer can send and receive one O(log n)-bit message per round. The input matrices are uniformly sparse, meaning that there are at most d nonzero entries in each row and column, and the task is to compute a uniformly sparse part of their product.</p>
+<p>In prior work, Gupta et al. (SPAA 2022) presented an O(d<sup>1.907</sup>)-round algorithm over fields for this problem when the sparsity structure is globally known in advance (this is referred to as the supported setting). The upper bound was later improved to O(d<sup>1.832</sup>) rounds.</p>
+<p>In this work, we give a deterministic algorithm that solves this problem in O(d<sup>3/2</sup>) rounds in the supported setting, improving the previous bounds over fields and semirings.</p>

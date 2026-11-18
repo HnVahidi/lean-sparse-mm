@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 type: software
-title: 'lean-sparse-mm: Lean companion for sparse matrix multiplication'
+title: 'A Lean 4 formalization of Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model'
 message: Cite the Zenodo version DOI for this formalization and cite the manuscript when relying on
   its mathematical results. Apache-2.0 covers the code and project documentation outside paper/.
   The manuscript files in paper/ retain the separate rights stated in paper/LICENSE.
@@ -14,15 +14,27 @@ authors:
 - family-names: Vahidi
   given-names: Hossein
   orcid: https://orcid.org/0000-0002-0040-1213
-abstract: Lean proofs and operational models for supported sparse matrix multiplication, with a paper-to-formalization
-  audit, reproducible kernel checks, and explicit scalar-message and encoding assumptions.
+abstract: |-
+  A Lean 4 formalization of "Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model" by Chetan Gupta, Jukka Suomela, and Hossein Vahidi.
+
+  Paper: https://arxiv.org/abs/2611.15201
+
+  The code and project documentation are licensed under Apache-2.0. The manuscript files in paper/ are excluded; see paper/LICENSE.
+
+  Paper abstract:
+
+  We study sparse matrix multiplication in the low-bandwidth model: n computers multiply two n × n matrices, and each computer can send and receive one O(log n)-bit message per round. The input matrices are uniformly sparse, meaning that there are at most d nonzero entries in each row and column, and the task is to compute a uniformly sparse part of their product.
+
+  In prior work, Gupta et al. (SPAA 2022) presented an O(d^1.907)-round algorithm over fields for this problem when the sparsity structure is globally known in advance (this is referred to as the supported setting). The upper bound was later improved to O(d^1.832) rounds.
+
+  In this work, we give a deterministic algorithm that solves this problem in O(d^(3/2)) rounds in the supported setting, improving the previous bounds over fields and semirings.
 keywords:
 - Lean
 - formal verification
 - sparse matrix multiplication
 - distributed algorithms
 references:
-- type: unpublished
+- type: article
   title: Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model
   authors:
   - family-names: Gupta
@@ -34,13 +46,11 @@ references:
   - family-names: Vahidi
     given-names: Hossein
     orcid: https://orcid.org/0000-0002-0040-1213
-  notes: Author-supplied manuscript included in paper/ with copyright retained by Chetan Gupta, Jukka
-    Suomela and Hossein Vahidi. Excluded from the code licence; see paper/LICENSE. No arXiv identifier,
-    selected arXiv licence or DOI is asserted.
+  url: https://arxiv.org/abs/2611.15201v1
+  notes: arXiv:2611.15201v1, submitted on 11 November 2026. The current paper/ PDF is the arXiv
+    version. The manuscript is excluded from Apache-2.0; see paper/LICENSE. arXiv distributes
+    the paper under its perpetual, non-exclusive licence. Version 1.0.0 archived the earlier manuscript draft.
 license: Apache-2.0
-version: 1.0.0
-date-released: '2026-11-11'
-commit: 76a5a6a73fdc9f3f1fe02d1d2e4664d4f802467d
-doi: 10.5281/zenodo.24127515
+version: 1.0.1
 repository-code: https://github.com/HnVahidi/lean-sparse-mm
 url: https://github.com/HnVahidi/lean-sparse-mm

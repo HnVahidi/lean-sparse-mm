@@ -8,8 +8,10 @@ unmodified. These terms were selected by the repository maintainer.
 **All contents of `paper/` are excluded from the root Apache-2.0 licence.**
 They retain the manuscript authors' copyright and the separate
 [manuscript rights notice](paper/LICENSE). This exclusion also covers the PDF,
-LaTeX files and bibliography. No CC licence or completed arXiv submission is
-asserted; record the actual arXiv choice if and when submitted.
+LaTeX files and bibliography. The paper is published as
+[arXiv:2611.15201v1](https://arxiv.org/abs/2611.15201v1) under the
+[arXiv perpetual, non-exclusive distribution licence](https://arxiv.org/licenses/nonexclusive-distrib/1.0/).
+No Creative Commons licence is granted for the manuscript.
 
 The formalization is credited to **Chetan Gupta, Jukka Suomela, and Hossein
 Vahidi**, in that order, in `CITATION.cff` and `formalization.yaml`. Hossein

@@ -2,19 +2,22 @@
   "schema_version": 1,
   "manuscript": {
     "title": "Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model",
-    "source_revision": "678f50ee1fd6c1f97ab92062f965063be28015af",
+    "source_revision": "4f0c46f513163d7b61ceeff9e324fce9fb806fa1",
     "source_directory": "arxiv",
     "pdf_tracked_in_source_git": false,
-    "pdf_sha256": "37ff1c413e7b088bf4364e64c8886128e5fbc566e3abebb6a59c5c2a79e42672",
+    "pdf_sha256": "ac738917953df4bed957f736a4a1cc811d93eaf7d07de28080d0b4bff7b28f36",
     "files": {
       "conclusions.tex": "5f2a52291284dce4e066c58db6554d08164d6ee1de700477fd23f7a1f85ed00e",
       "da.bib": "e1297ed5b251fb992e93c3f4a7bdef2294686cd8fdf4f2e157df7b2a839f5009",
       "introduction.tex": "6cad3690266b31d72f5c49ae97964628982c4fabed7a761d470496cfe4665119",
-      "main.tex": "7295a3696803dbe117af5378b6ca21423b19a74d2410685f18ce6f71f71c3ff5",
+      "main.tex": "6297fc3d29ded9b483d3bc3dcd8550de6139ad8d7ed5096ed76715eaaf74ab6f",
       "preliminaries.tex": "f6d829cc85a6337168dcb75ef001b40d47fe933fa349aaa18bc6ce748f98fe51",
-      "sparse-mm.pdf": "37ff1c413e7b088bf4364e64c8886128e5fbc566e3abebb6a59c5c2a79e42672",
+      "sparse-mm.pdf": "ac738917953df4bed957f736a4a1cc811d93eaf7d07de28080d0b4bff7b28f36",
       "ub.tex": "0301bdcf80a0a65d5e7c26117071b3908e598ea27905455a724552d4c0c9c1a0"
-    }
+    },
+    "source_revision_scope": "Bundled TeX and bibliography match this manuscript checkout. The arXiv submission ZIP contains the four active TeX files, da.bib and a generated main.bbl. conclusions.tex is retained but inactive.",
+    "pdf_source": "arXiv:2611.15201v1",
+    "pdf_url": "https://arxiv.org/pdf/2611.15201v1"
   },
   "formalization": {
     "original_source_revision": "8badbe471000b4e0f63d2e40b1ee784cb74c4556",

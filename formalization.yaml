@@ -1,8 +1,8 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
 version: v0.4
 project:
-  name: 'lean-sparse-mm: Lean companion for sparse matrix multiplication'
-  description: A standalone Lean companion to the included sparse matrix multiplication manuscript.
+  name: 'A Lean 4 formalization of Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model'
+  description: A Lean 4 formalization of Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model.
     The principal result constructs a deterministic supported scalar-message protocol over arbitrary
     semirings, with public masks and original holders, bounded load, balanced chosen output owners,
     correct requested entries and an explicit O(d^(3/2)) round bound. Interpreting scalar messages
@@ -16,8 +16,7 @@ project:
   responsible_maintainers:
   - Hossein Vahidi
   license: Apache-2.0
-  version: 1.0.0
-  doi: 10.5281/zenodo.24127515
+  version: 1.0.1
   repository: https://github.com/HnVahidi/lean-sparse-mm
 classification:
   arxiv:
@@ -31,16 +30,16 @@ sources:
   - Chetan Gupta
   - Jukka Suomela
   - Hossein Vahidi
-  type: author-supplied manuscript
-  id: sha256:37ff1c413e7b088bf4364e64c8886128e5fbc566e3abebb6a59c5c2a79e42672
+  type: arXiv preprint
+  id: sha256:ac738917953df4bed957f736a4a1cc811d93eaf7d07de28080d0b4bff7b28f36
   relationship: formalizes
-  note: Current ten-page author-supplied paper is included with its complete active LaTeX source closure
-    in paper/. Source repository revision 678f50ee1fd6c1f97ab92062f965063be28015af; the separately
-    supplied PDF was untracked in that repository and is identified by its file hash. docs/source-provenance.json
-    binds every supplied file. Unincluded beyond.tex is outside this manuscript. The current paper-to-type
-    review is in docs/coverage.md. Repository authorship credits all three manuscript authors at the
-    maintainer's instruction. AI review and any human review are recorded separately. The participating
-    requesting author is Hossein Vahidi; attribution does not assert personal review of every proof.
+  note: The ten-page arXiv:2611.15201v1 PDF is included in paper/sparse-mm.pdf.
+    The four active TeX files and bibliography match the author's v1 submission bundle and source
+    revision 4f0c46f513163d7b61ceeff9e324fce9fb806fa1. conclusions.tex is retained but inactive.
+    docs/source-provenance.json records the file hashes; docs/manuscript.md records the update from
+    the earlier draft archived in v1.0.0. The numbered claims and proof sections are unchanged.
+    The paper-to-type review is in docs/coverage.md. Repository authorship credits all three
+    manuscript authors. AI assistance and review are recorded separately.
   license: All rights reserved; paper/ is excluded from Apache-2.0
   author_endorsement: participated
 - title: Rectangular matrix multiplication finite static routing and balancing proofs
@@ -181,4 +180,4 @@ licensing:
     path: paper/
     rights: All rights reserved
     notice_file: paper/LICENSE
-    arxiv_license_status: Not yet selected or recorded
+    arxiv_license_status: arXiv:2611.15201v1 uses the arXiv perpetual, non-exclusive distribution licence

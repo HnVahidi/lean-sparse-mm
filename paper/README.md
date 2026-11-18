@@ -1,15 +1,15 @@
-# Manuscript
+# Paper
 
-The supplied PDF and the complete LaTeX source for its ten pages are included here. [Open the manuscript](sparse-mm.pdf)
+[Read the arXiv PDF](sparse-mm.pdf) · [arXiv:2611.15201v1](https://arxiv.org/abs/2611.15201v1)
 
-To rebuild, copy the five `.tex` files and `da.bib` into a temporary directory. Run the following command from that copy.
+The PDF is the published arXiv v1, supplied by the authors. The active sources (`main.tex`, `introduction.tex`, `preliminaries.tex`, `ub.tex`, and `da.bib`) match the v1 submission bundle. The retained `conclusions.tex` belongs to the earlier draft and is not included by `main.tex`.
+
+To build the source, copy the four active `.tex` files and `da.bib` to a temporary directory and run:
 
 ```sh
 latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -recorder main.tex
 ```
 
-This writes `main.pdf` beside `main.tex` in the temporary copy. The tested setup used MiKTeX 26.5 with pdfTeX and BibTeX. Use a LaTeX distribution with the packages declared in `main.tex`, including Latin Modern, PGF/TikZ, `orcidlink`, `cleveref`, and the `plainurl` BibTeX style. The figure is drawn in `introduction.tex`.
+This creates `main.pdf` in that directory. Use a LaTeX distribution with the packages declared in `main.tex` and the `plainurl` BibTeX style. Figure 1 is drawn in `introduction.tex`.
 
-The temporary-directory build keeps the supplied `sparse-mm.pdf` as the reference file and lets BibTeX find `da.bib` beside the entry point. On the tested Windows setup, `latexmk -outdir` moved the BibTeX working directory and failed to resolve the database. [Source hashes and rebuild record](../docs/manuscript.md)
-
-The contents of this directory are excluded from the repository's Apache-2.0 code licence. See [the manuscript rights notice](LICENSE). No Creative Commons licence or completed arXiv submission is asserted.
+The [manuscript record](../docs/manuscript.md) distinguishes the arXiv PDF from the earlier draft and its build evidence. These files are excluded from the repository's Apache-2.0 licence; see [the manuscript rights notice](LICENSE).

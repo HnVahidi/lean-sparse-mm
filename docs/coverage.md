@@ -1,6 +1,6 @@
 # Coverage of the manuscript
 
-This map follows the eleven numbered claims in the ten-page manuscript included in the companion. It compares the manuscript statements to the Lean declarations and their assumptions. The [manuscript record](manuscript.md) identifies the exact source snapshot and PDF.
+This map follows the eleven numbered claims in [arXiv:2611.15201v1](https://arxiv.org/abs/2611.15201v1), whose ten-page PDF is included in the repository. The numbered claims and proof sections match the earlier draft reviewed for formalization v1.0.0. It compares the manuscript statements to the Lean declarations and their assumptions. The [manuscript record](manuscript.md) identifies the exact source snapshot and PDF.
 
 **Exact** means that Lean states the indicated mathematical property in the finite model. **Equivalent conclusion** means that the checked result gives the manuscript's guarantee through a different construction, an integral parameter choice, or explicit constants. **Restricted** identifies a part of a claim that the checked interface supports. **Missing** identifies a statement or implementation detail outside the checked results.
 
@@ -33,4 +33,4 @@ This map follows the eleven numbered claims in the ten-page manuscript included 
 
 The shared logarithmic cost conversions have direct Comparator entries for `ToolboxComplexity.log_div_le_rounds`, `ToolboxComplexity.clog_two_le_log_div_add_one`, `ToolboxComplexity.pipeline_rounds_le`, and `ToolboxComplexity.single_value_rounds_le_log`.
 
-The introduction's comparisons with earlier algorithms, the conditional lower-bound curves, and the conclusion's triangle-coverage remark are outside the checked results. The numbered claims concern the supported model with public input distribution. Open questions about removing support or improving the exponent remain open in this companion.
+The introduction's comparisons with earlier algorithms, the conditional lower-bound curves, and the introduction's triangle-coverage discussion are outside the checked results. The numbered claims concern the supported model with public input distribution. Open questions about removing support or improving the exponent remain open in this formalization.

@@ -1,54 +1,41 @@
-# lean-sparse-mm
+# Sparse matrix multiplication in Lean
 
-Lean companion to **Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model**, by Chetan Gupta, Jukka Suomela, and Hossein Vahidi.
+A Lean 4 formalization of **[Sparse Matrix Multiplication Exponent 1.5 in the Low-bandwidth Model](https://arxiv.org/abs/2611.15201)** by Chetan Gupta, Jukka Suomela, and Hossein Vahidi.
 
-Version `1.0.0` was released and archived on 11 November 2026. [GitHub release](https://github.com/HnVahidi/lean-sparse-mm/releases/tag/v1.0.0) · [Zenodo version DOI](https://doi.org/10.5281/zenodo.24127515)
+[Paper PDF](paper/sparse-mm.pdf) · [arXiv](https://arxiv.org/abs/2611.15201)
 
-The paper, coverage audit and verification report accompany the Lean sources. [Paper](paper/sparse-mm.pdf) · [Coverage audit](docs/coverage.md) · [Verification report](docs/verification.md)
+The main theorem gives a deterministic algorithm that runs in $O(d^{3/2})$ rounds when the sparsity pattern is known in advance. Here $d$ bounds the number of nonzero entries in each row and column.
 
-## Scope
+## Abstract
 
-The main result is an actual deterministic, five-phase sparse matrix multiplication protocol over arbitrary semirings, with public allowed input masks, public requested output mask and initial holders. One program and balanced output assignment are chosen before all numerical inputs. Each machine sends and receives at most one scalar per round. With initial load at most `K*d`, the proved finite bound is at most `(8*K+80)*d*sqrt(d)` rounds, for fixed `K`.
+We study sparse matrix multiplication in the low-bandwidth model: $n$ computers multiply two $n\times n$ matrices, and each computer can send and receive one $O(\log n)$-bit message per round. The input matrices are uniformly sparse, meaning that there are at most $d$ nonzero entries in each row and column, and the task is to compute a uniformly sparse part of their product.
 
-The source paper assumes that transmitted inputs, products and partial sums admit one-word encodings. `Main.lean` is a scalar-message theorem; `Wire.lean` proves per-round preservation under a shared codec correct on the values actually sent. A complete encoded bit-vector program is not asserted. The correspondence audit distinguishes this conditional model interpretation from exact finite statements.
+In prior work, Gupta et al. (SPAA 2022) presented an $O(d^{1.907})$-round algorithm over fields for this problem when the sparsity structure is globally known in advance (this is referred to as the supported setting). The upper bound was later improved to $O(d^{1.832})$ rounds.
 
-Integer teams use `h = Nat.sqrt d + 1`, clusters have `d*h` positions, and public batch permutations replace the paper's sorted cyclic output assignment. The toolbox includes exact regular-load redistribution, pipelined broadcast/aggregation, Boolean AND/OR systems, and adaptive broadcast/aggregation lower bounds. See the coverage table for exact types and differences. Contextual bounds from cited papers and triangle-coverage remarks are outside the advertised formal results.
+In this work, we give a deterministic algorithm that solves this problem in $O(d^{3/2})$ rounds in the supported setting, improving the previous bounds over fields and semirings.
 
-## Contents
+## Read the proofs
 
-- `Challenge.lean`: independently readable statement/model interface.
-- `Solution.lean`, `SparseMM/`: complete project-specific proofs and local execution models.
-- `comparator.json`: every advertised main and toolbox interface selected for comparison.
-- `paper/`: matching PDF, complete active LaTeX sources, bibliography and inline figures.
-- `docs/`: coverage, source provenance, correspondence review, verification and release guidance.
-- `scripts/`, `.github/workflows/`: reproducible checks and fail-on-error CI.
-- `LICENSE`, `paper/LICENSE`, `CITATION.cff`, `NOTICE.md`, `LICENSE_STATUS.md`: scoped licences, manuscript rights, citation and attribution.
+- [Paper results and their Lean statements](docs/coverage.md).
+- [Challenge.lean](Challenge.lean): theorem statements and definitions.
+- [SparseMM/Main.lean](SparseMM/Main.lean): the main theorem and proof.
+- [SparseMM/](SparseMM/): supporting proofs, imported by [Solution.lean](Solution.lean).
 
-## Verify
+## Build and verify
 
-Use Linux, or Linux under WSL. The pinned `lean-toolchain` selects Lean 4.35.0-rc2; `lake-manifest.json` fixes all standard dependencies. Follow [docs/verification.md](docs/verification.md) for the exact prerequisites and commands, including the required Bubblewrap version and fresh-checkout procedure. The documented verification entry point and GitHub Actions run the same checks.
-
-After installing the prerequisites and committing the source, run the complete gate:
-
-```sh
-bash scripts/verify-isolated.sh
-```
-
-Ordinary proof builds use:
+Install [Elan](https://github.com/leanprover/elan), then run these commands from the repository root:
 
 ```sh
 lake exe cache get
 lake build
 ```
 
-A build alone is not the full verification. Required checks also compare the Challenge and Solution, inspect every advertised declaration's axiom closure, validate metadata and paper provenance, and replay through Lean, NanoDa and con-ron. Solution proofs may use only `propext`, `Classical.choice`, and `Quot.sound`. Challenge statement placeholders are intentionally isolated from Solution.
+The project pins its Lean version and dependencies. For the full verification procedure, including independent proof checks, see the [verification guide](docs/verification.md). It requires Linux or WSL and a committed source snapshot.
 
-## Provenance and citation
+## Citation and licence
 
-The included manuscript sources are from revision `678f50ee1fd6c1f97ab92062f965063be28015af`; the supplied PDF is identified separately by its SHA-256 in [docs/source-provenance.json](docs/source-provenance.json). The mathematical Lean development originates at revision `8badbe471000b4e0f63d2e40b1ee784cb74c4556`, with prior evidence at `3ac917835b35e7b1d4b66f758f1b2a37a7f78826`. No sibling checkout or private source is required to build this package.
+Cite the paper for the mathematical results and an [archived release](docs/release.md) for the formalization. Citation metadata is provided in [CITATION.cff](CITATION.cff).
 
-`CITATION.cff` records the authors, release date, verified source commit and version DOI. The release record gives the exact archive and verification evidence. Hossein Vahidi maintains the repository. The formalization metadata records the AI assistance and correspondence review. [Citation metadata](CITATION.cff) · [Release record](docs/release.md) · [Formalization metadata](formalization.yaml)
+Code and project documentation outside `paper/` use [Apache-2.0](LICENSE), subject to the [existing notices](NOTICE.md). The manuscript has [separate rights](paper/LICENSE).
 
-## Licence scope
-
-The Lean source code, verification/build scripts, and project documentation outside `paper/` are licensed under [Apache-2.0](LICENSE), except where another notice applies. **All contents of `paper/` are excluded from that licence** and are governed by the [separate manuscript rights notice](paper/LICENSE). Existing third-party attribution in [NOTICE.md](NOTICE.md) remains applicable. See [licensing and authorship](LICENSE_STATUS.md) for details.
+The formalization was developed with AI assistance, recorded in [formalization.yaml](formalization.yaml).
